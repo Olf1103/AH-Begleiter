@@ -123,6 +123,8 @@
     .status { margin-left: 0; width: 100%; }
     th, td { padding: 4px 5px; }
     .hide-sm { display: none; }
+    .item span { white-space: normal; overflow-wrap: anywhere; }
+    .money i { margin: 0 2px 0 0; }
   }
 </style>
 </head>
@@ -367,11 +369,12 @@ const S = {
   craft: store.get("craft", { prof: "197", sort: "daily", sold: "1", complete: true, q: "" }),
   deals: store.get("deals", { mode: "market", minProfit: 1, hideJunk: true }),
   movers: store.get("movers", { window: "24", minQty: 5, hideJunk: true }),
+  trade: store.get("trade", { a: null, b: null, cutA: 5, cutB: 15, days: 2, share: 30, minNet: 0.1, minRoi: 15, dir: "both", hideJunk: true, q: "" }),
   refresh: store.get("refresh", 10),
   lastLoad: 0, token: 0, alerts: 0, notified: new Set(),
 };
 function save() {
-  for (const k of ["region", "tab", "watch", "shop", "craft", "deals", "movers", "refresh"]) store.set(k, S[k]);
+  for (const k of ["region", "tab", "watch", "shop", "craft", "deals", "movers", "trade", "refresh"]) store.set(k, S[k]);
   store.set("house." + MODE, S.house);
 }
 const houseObj = () => S.houses.find((h) => String(h.house_key) === String(S.house));
@@ -389,6 +392,7 @@ const TABS = [
   { id: "watch", label: "Merkliste", render: renderWatch },
   { id: "craft", label: "Handwerk", render: renderCraft, mcp: renderCraftMcp },
   { id: "deals", label: "Schnäppchen", render: renderDeals, mcp: renderDealsMcp },
+  { id: "trade", label: "Handel", render: renderTrade, mcp: renderTradeMcp },
   { id: "movers", label: "Preisbewegungen", render: renderMovers, mcp: renderMoversMcp },
   { id: "shop", label: "Einkaufsliste", render: renderShop, mcp: renderShopMcp },
 ];
@@ -944,6 +948,181 @@ async function renderShop(view, alive) {
       unified && best1 ? el("div", { class: "card" }, el("div", { class: "k", text: "Alles in einem Haus" }), el("div", { class: "v" }, money(best1.cost)),
         el("div", { class: "hint", text: houseNameShort(best1.house_name, best1.house_id) })) : null),
     el("p", { class: "hint", text: "Kosten = günstigste aktuelle Auktionen, bis die Menge erreicht ist. Stapel lassen sich nur ganz kaufen, deshalb kann die Stückzahl höher ausfallen." }));
+}
+
+/* ---------- Handel zwischen zwei Häusern (z. B. Allianz/Sturmwind ↔ Blackwater) ---------- */
+// Kompakte Marktzeile: [id, name, quality, class, min, p10, median, menge, marktwert, verk/tag, tage gesehen]
+const I = { ID: 0, NAME: 1, Q: 2, CLS: 3, MIN: 4, P10: 5, MED: 6, QTY: 7, MV: 8, SOLD: 9, DAYS: 10 };
+const tradeMem = new Map(), tradeLoading = new Map();
+function loadHouseTable(key, onProgress) {
+  const snap = houseByKey(key)?.last_snapshot;
+  const mem = tradeMem.get(key);
+  if (mem && mem.snap === snap) return Promise.resolve(mem.rows);
+  const st = store.get("trade." + key, null);
+  if (st && st.snap === snap) { tradeMem.set(key, st); return Promise.resolve(st.rows); }
+  if (tradeLoading.has(key)) { tradeLoading.get(key).listeners.add(onProgress); return tradeLoading.get(key).p; }
+  const listeners = new Set([onProgress]);
+  const p = (async () => {
+    const rows = [];
+    let offset = 0, total = Infinity;
+    while (offset < total) {
+      const d = await api(`/houses/${key}/market`, { limit: 200, offset, sort: "name" }, 30 * 60 * 1000);
+      total = d.total;
+      for (const r of d.rows) {
+        const it = r.item, c = r.current || {}, s = r.stats || {};
+        rows.push([it.item_id, it.name, it.quality, it.item_class, c.min_unit, c.p10_unit, c.median_unit, c.quantity,
+          s.market_value ?? null, s.sold_per_day ?? 0, s.days_seen ?? 0]);
+      }
+      if (!d.rows.length) break;
+      offset += d.rows.length;
+      for (const l of listeners) try { l(Math.min(offset, total), total); } catch {}
+    }
+    const entry = { snap, rows };
+    tradeMem.set(key, entry);
+    try { localStorage.setItem("ahb.trade." + key, JSON.stringify(entry)); } catch {}   // zu groß → nur im Speicher
+    return rows;
+  })();
+  tradeLoading.set(key, { p, listeners });
+  p.finally(() => tradeLoading.delete(key));
+  return p;
+}
+function defaultTradePair() {
+  const real = S.houses.filter((h) => h.region === S.region && h.house_type === "real");
+  const al = real.filter((h) => /Alliance/.test(h.name)).sort((a, b) => a.house_id - b.house_id);
+  const bw = real.filter((h) => /Blackwater/.test(h.name)).sort((a, b) => a.house_id - b.house_id);
+  // Häuser einer Realmgruppe liegen in derselben Reihenfolge (z. B. 110 ↔ 116); aktuelles Haus bevorzugen
+  let i = Math.max(0, al.findIndex((h) => h.house_key === S.house));
+  if (al.findIndex((h) => h.house_key === S.house) < 0) { const j = bw.findIndex((h) => h.house_key === S.house); if (j >= 0) i = j; }
+  return [al[i]?.house_key ?? real[0]?.house_key, bw[i]?.house_key ?? real[1]?.house_key];
+}
+// Erwarteter Gewinn für "in buy kaufen, in sell verkaufen"
+function tradeOpp(buy, sell, cutSell, t, dir) {
+  const buyPrice = buy[I.P10] ?? buy[I.MIN];
+  if (!buyPrice || !sell[I.MIN] || sell[I.DAYS] < 3 || !(sell[I.SOLD] > 0)) return null;
+  // Verkaufen knapp unter dem günstigsten Angebot, aber nie über dem Marktwert (schützt vor Mondpreisen)
+  const sellPrice = Math.min(sell[I.MIN] - 1, sell[I.MV] ?? Infinity);
+  const net = sellPrice * (1 - cutSell / 100) - buyPrice;
+  if (!(net > 0)) return null;
+  const avail = Math.max(1, Math.floor((buy[I.QTY] || 0) * 0.1));       // bis zum 10-%-Preis kaufbar
+  const demand = sell[I.SOLD] * (t.share / 100) * t.days;                // dein Anteil an der Nachfrage
+  const units = Math.min(avail, demand);
+  return { id: buy[I.ID], name: buy[I.NAME] || sell[I.NAME], quality: buy[I.Q] || sell[I.Q], cls: buy[I.CLS], dir,
+    buyPrice, buyMin: buy[I.MIN], buyQty: buy[I.QTY], sellPrice, sellQty: sell[I.QTY], sold: sell[I.SOLD], net,
+    roi: (net / buyPrice) * 100, units, exp: net * units, capital: buyPrice * Math.ceil(units) };
+}
+const tradeSort = { key: "exp", dir: -1 };
+async function renderTrade(view, alive) {
+  const t = S.trade;
+  const real = S.houses.filter((h) => h.region === S.region && h.house_type === "real").sort((a, b) => a.house_id - b.house_id);
+  if (!real.some((h) => h.house_key === t.a) || !real.some((h) => h.house_key === t.b) || t.a === t.b) { [t.a, t.b] = defaultTradePair(); save(); }
+  const hA = houseByKey(t.a), hB = houseByKey(t.b);
+  const short = (h) => houseLabel(h).replace("Allianz", "Allianz (Sturmwind)");
+  const houseSel = (k, set) => el("select", { onchange: (e) => { set(Number(e.target.value)); save(); render(); } },
+    real.map((h) => el("option", { value: h.house_key, selected: h.house_key === k }, houseLabel(h))));
+  const num = (k, attrs) => el("input", { type: "number", value: t[k], style: "width:64px", ...attrs,
+    onchange: (e) => { const v = parseFloat(String(e.target.value).replace(",", ".")); if (isFinite(v)) { t[k] = v; save(); redraw(); } } });
+  const field = (label, input, title) => el("div", { class: "ctrl", title }, el("label", null, label), input);
+  let qTimer;
+  const head = el("div", null,
+    el("div", { class: "bar" },
+      field("Haus A", houseSel(t.a, (v) => { t.a = v; })),
+      el("button", { class: "btn small", title: "Häuser tauschen", onclick: () => { [t.a, t.b] = [t.b, t.a]; [t.cutA, t.cutB] = [t.cutB, t.cutA]; save(); render(); } }, "⇄"),
+      field("Haus B", houseSel(t.b, (v) => { t.b = v; })),
+      el("div", { class: "seg" }, [["both", "beide Richtungen"], ["ab", "A → B"], ["ba", "B → A"]].map(([v, txt]) =>
+        el("button", { class: v === t.dir ? "on" : "", onclick: (e) => { t.dir = v; save(); e.target.parentNode.querySelectorAll("button").forEach((b) => b.classList.toggle("on", b === e.target)); redraw(); } }, txt)))),
+    el("details", { open: window.innerWidth > 700, style: "margin-bottom:10px" },
+     el("summary", { class: "hint", style: "cursor:pointer;margin-bottom:8px" }),
+     el("div", { class: "bar" },
+      field("Gebühr A %", num("cutA", { min: 0, max: 50, step: 1 }), "AH-Anteil beim Verkauf in Haus A"),
+      field("Gebühr B %", num("cutB", { min: 0, max: 50, step: 1 }), "AH-Anteil beim Verkauf in Haus B"),
+      field("Tage", num("days", { min: 0.5, max: 14, step: 0.5 }), "Wie viele Tage du Ware verkaufen willst"),
+      field("Marktanteil %", num("share", { min: 1, max: 100, step: 5 }), "Welchen Teil der täglichen Verkäufe du realistisch bekommst"),
+      field("min. Gewinn/Stk (g)", num("minNet", { min: 0, step: 0.05, style: "width:70px" })),
+      field("min. Marge %", num("minRoi", { min: 0, step: 5 })),
+      el("label", { class: "ctrl" }, el("input", { type: "checkbox", checked: t.hideJunk, onchange: (e) => { t.hideJunk = e.target.checked; save(); redraw(); } }), el("span", { class: "hint", text: "Graue Items aus" })),
+      el("input", { type: "text", placeholder: "Item filtern …", value: t.q, style: "width:150px",
+        oninput: (e) => { clearTimeout(qTimer); qTimer = setTimeout(() => { t.q = e.target.value.trim(); save(); redraw(); }, 300); } }))));
+  const progress = el("div", { class: "empty" }, "Lade Marktdaten …");
+  const results = el("div");
+  view.replaceChildren(head, progress, results);
+
+  const prog = { a: [0, 0], b: [0, 0] };
+  const showProg = () => {
+    const pa = prog.a[1] ? `${short(hA)}: ${nf.format(prog.a[0])}/${nf.format(prog.a[1])}` : "";
+    const pb = prog.b[1] ? `${short(hB)}: ${nf.format(prog.b[0])}/${nf.format(prog.b[1])}` : "";
+    progress.textContent = `Lade beide Märkte vollständig (einmal pro Stunde, ca. 1 Minute) … ${[pa, pb].filter(Boolean).join(" · ")}`;
+  };
+  const ra = await loadHouseTable(t.a, (d, n) => { prog.a = [d, n]; showProg(); });
+  if (!alive()) return;
+  const rb = await loadHouseTable(t.b, (d, n) => { prog.b = [d, n]; showProg(); });
+  if (!alive()) return;
+  progress.remove();
+  updateSnap();
+  const mapB = new Map(rb.map((r) => [r[I.ID], r]));
+  const pairs = ra.filter((r) => mapB.has(r[I.ID])).map((r) => [r, mapB.get(r[I.ID])]);
+  let shown = 100;
+
+  function redraw() {
+    head.querySelector("summary").textContent =
+      `Einstellungen: Gebühr ${nf1.format(t.cutA)} / ${nf1.format(t.cutB)} %, ${nf1.format(t.days)} Tage, ${nf.format(t.share)} % Anteil, ab ${nf.format(t.minRoi)} % Marge`;
+    const q = (t.q || "").toLowerCase();
+    let opps = [];
+    for (const [a, b] of pairs) {
+      if (t.hideJunk && (a[I.Q] === "POOR")) continue;
+      if (q && !String(a[I.NAME] || "").toLowerCase().includes(q)) continue;
+      if (t.dir !== "ba") { const o = tradeOpp(a, b, t.cutB, t, "ab"); if (o) opps.push(o); }
+      if (t.dir !== "ab") { const o = tradeOpp(b, a, t.cutA, t, "ba"); if (o) opps.push(o); }
+    }
+    opps = opps.filter((o) => o.net >= t.minNet * 10000 && o.roi >= t.minRoi);
+    const col = cols.find((c) => c.key === tradeSort.key && c.val) || cols.find((c) => c.key === "exp");
+    opps.sort((x, y) => tradeSort.dir * ((col.val(x) ?? 0) - (col.val(y) ?? 0)));
+    const top = opps.slice(0, 20);
+    const sum = top.reduce((s, o) => s + o.exp, 0), cap = top.reduce((s, o) => s + o.capital, 0);
+    const tbody = el("tbody");
+    for (const o of opps.slice(0, shown)) {
+      tbody.append(el("tr", { class: "click", onclick: () => openDetail(o.id) }, cols.map((c) =>
+        el("td", { class: [c.num ? "num" : "", c.sm ? "hide-sm" : ""].join(" ") }, c.cell(o)))));
+    }
+    if (!opps.length) tbody.append(el("tr", null, el("td", { colspan: cols.length, class: "empty", text: "Keine Handelschancen mit diesen Filtern. Senke z. B. die Mindestmarge." })));
+    const thead = el("tr", null, cols.map((c) => el("th", {
+      class: [c.num ? "num" : "", c.val ? "sortable" : "", c.sm ? "hide-sm" : ""].join(" "), title: c.title,
+      onclick: c.val && (() => { tradeSort.dir = tradeSort.key === c.key ? -tradeSort.dir : -1; tradeSort.key = c.key; redraw(); }) },
+      c.label, tradeSort.key === c.key ? (tradeSort.dir > 0 ? " ▲" : " ▼") : "")));
+    results.replaceChildren(
+      el("div", { class: "cards" },
+        card("Handelschancen", nf.format(opps.length)),
+        card("Erwarteter Gewinn (Top 20)", money(sum)),
+        card("Kapital dafür", money(cap)),
+        card("Zeitraum", `${nf1.format(t.days)} Tage · ${nf.format(t.share)} % Anteil`)),
+      el("div", { class: "tablewrap" }, el("table", null, el("thead", null, thead), tbody)),
+      opps.length > shown ? el("button", { class: "btn", style: "margin-top:8px", onclick: () => { shown += 100; redraw(); } }, `Weitere ${Math.min(100, opps.length - shown)} anzeigen`) : null,
+      el("p", { class: "hint", text:
+        "So wird gerechnet: Kaufen zum 10-%-Preis des Kaufhauses (die günstigsten 10 % der Angebote). Verkaufen 1c unter dem günstigsten Angebot im Zielhaus, " +
+        "höchstens zum Marktwert. Davon geht die Gebühr des Zielhauses ab. Menge = dein Anteil an den geschätzten Verkäufen im Zielhaus über den Zeitraum, " +
+        "höchstens 10 % der Angebote im Kaufhaus. Erwarteter Gewinn = Gewinn pro Stück × Menge. Nicht enthalten: Einstellgebühr (bei Verkauf erstattet, " +
+        "bei Nichtverkauf verloren), Reisezeit und Preisänderungen, bis du ankommst. Verkäufe/Tag sind Schätzungen aus verschwundenen Auktionen." }));
+  }
+  const card = (k, v) => el("div", { class: "card" }, el("div", { class: "k", text: k }), el("div", { class: "v" }, v));
+  const arrow = (o) => {
+    const [from, to] = o.dir === "ab" ? [hA, hB] : [hB, hA];
+    const s = (h) => /Blackwater/.test(h?.name) ? "BW" : /Alliance/.test(h?.name) ? "SW" : /Horde/.test(h?.name) ? "Horde" : "?";
+    return el("span", { class: "hint", title: `Kaufen in ${houseLabel(from)}, verkaufen in ${houseLabel(to)}`, text: ` ${s(from)}→${s(to)}` });
+  };
+  const cols = [
+    { key: "name", label: "Item", cell: (o) => el("span", null, itemCell({ item_id: o.id, name: o.name, quality: o.quality }), arrow(o)) },
+    { key: "buy", label: "Kaufen", num: true, title: "Erwarteter Einkaufspreis (10-%-Preis)", val: (o) => o.buyPrice, cell: (o) => money(o.buyPrice) },
+    { key: "sell", label: "Verkaufen", num: true, sm: true, val: (o) => o.sellPrice, cell: (o) => money(o.sellPrice) },
+    { key: "net", label: "Gewinn/Stk", num: true, sm: true, title: "Nach Gebühr des Zielhauses", val: (o) => o.net, cell: (o) => money(o.net) },
+    { key: "roi", label: "Marge", num: true, val: (o) => o.roi, cell: (o) => el("span", { class: "up", text: `${nf.format(Math.round(o.roi))} %` }) },
+    { key: "sold", label: "Verk./Tag", num: true, sm: true, title: "Geschätzte Verkäufe pro Tag im Zielhaus", val: (o) => o.sold, cell: (o) => nf1.format(o.sold) },
+    { key: "units", label: "Menge", num: true, sm: true, title: "Erwartete Verkaufsmenge im Zeitraum", val: (o) => o.units, cell: (o) => nf1.format(o.units) },
+    { key: "exp", label: "Erwartet", num: true, title: "Erwarteter Gewinn im Zeitraum", val: (o) => o.exp, cell: (o) => money(o.exp) },
+    { key: "capital", label: "Kapital", num: true, sm: true, val: (o) => o.capital, cell: (o) => money(o.capital) },
+  ];
+  redraw();
+}
+async function renderTradeMcp(view) {
+  view.replaceChildren(el("div", { class: "empty" }, "Die Handelsübersicht braucht die vollständigen Marktdaten beider Häuser und gibt es deshalb nur in der Web-Version (GitHub Pages oder PC)."));
 }
 
 /* ---------- Connector-Varianten der Tabs (weniger Daten als die direkte API) ---------- */
