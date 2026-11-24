@@ -1,0 +1,1153 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="AH-Begleiter">
+<meta name="theme-color" content="#17130d">
+<link rel="apple-touch-icon" href="icon.png">
+<link rel="icon" href="data:image/png;base64,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">
+<title>AH-Begleiter</title>
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #0e0c09; --panel: #17130d; --panel2: #1f1a12; --line: #3a2f1d;
+    --text: #ece2cc; --muted: #9a8e76; --accent: #f2c14e; --accent2: #c99a3a;
+    --up: #5fd17a; --down: #ef6b5b; --warn: #f0a83c;
+    --gold: #ffd34d; --silver: #c9ccd1; --copper: #d08a52;
+    --q-poor: #9d9d9d; --q-common: #f2f2f2; --q-uncommon: #1eff00; --q-rare: #3a9bff;
+    --q-epic: #b866ff; --q-legendary: #ff8000;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font: 14px/1.45 "Segoe UI", -apple-system, Roboto, sans-serif; }
+  button, input, select { font: inherit; color: inherit; }
+  button { cursor: pointer; }
+  a { color: var(--accent); }
+
+  header { position: sticky; top: 0; z-index: 5; background: var(--panel); border-bottom: 1px solid var(--line);
+    display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; padding: 8px 14px; }
+  .brand { font: 700 17px Georgia, serif; color: var(--accent); white-space: nowrap; }
+  .ctrl { display: flex; gap: 6px; align-items: center; }
+  .ctrl label { color: var(--muted); font-size: 12px; }
+  select, input[type=text], input[type=number] { background: var(--panel2); border: 1px solid var(--line);
+    border-radius: 5px; padding: 4px 7px; min-width: 0; }
+  input[type=number] { width: 90px; }
+  .status { margin-left: auto; font-size: 12px; color: var(--muted); display: flex; gap: 10px; align-items: center; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--up); display: inline-block; }
+  .dot.busy { background: var(--warn); animation: pulse 1s infinite; }
+  .dot.err { background: var(--down); }
+  @keyframes pulse { 50% { opacity: .3; } }
+
+  nav { display: flex; gap: 2px; padding: 0 10px; background: var(--panel); border-bottom: 1px solid var(--line);
+    overflow-x: auto; position: sticky; top: var(--hdr, 49px); z-index: 4; }
+  nav button { background: none; border: 0; border-bottom: 2px solid transparent; padding: 8px 12px;
+    color: var(--muted); white-space: nowrap; }
+  nav button.on { color: var(--accent); border-bottom-color: var(--accent); }
+  nav button .badge { background: var(--down); color: #fff; border-radius: 9px; padding: 0 6px; font-size: 11px; margin-left: 4px; }
+
+  main { padding: 12px 14px 40px; max-width: 1400px; }
+  .bar { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; margin-bottom: 10px; }
+  .btn { background: var(--panel2); border: 1px solid var(--line); border-radius: 5px; padding: 4px 10px; }
+  .btn:hover { border-color: var(--accent2); }
+  .btn.primary { background: #3b2d12; border-color: var(--accent2); color: var(--accent); }
+  .btn.small { padding: 1px 7px; font-size: 12px; }
+  .muted { color: var(--muted); }
+  .hint { color: var(--muted); font-size: 12px; }
+  .err { color: var(--down); }
+
+  table { border-collapse: collapse; width: 100%; }
+  th, td { padding: 5px 8px; border-bottom: 1px solid #2a2216; text-align: left; vertical-align: middle; }
+  th { color: var(--accent2); font-weight: 600; font-size: 12px; white-space: nowrap; position: sticky; top: 0; background: var(--bg); }
+  th.sortable { cursor: pointer; user-select: none; }
+  th.sortable:hover { color: var(--accent); }
+  td.num, th.num { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  tr.click { cursor: pointer; }
+  tr.click:hover td { background: #1d1810; }
+  tr.alert td { background: #1f2a14; }
+  .tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); }
+
+  .item { display: inline-flex; align-items: center; gap: 7px; min-width: 0; }
+  .item img { width: 22px; height: 22px; border-radius: 3px; border: 1px solid #000; flex: none; }
+  .item span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .q-POOR { color: var(--q-poor); } .q-COMMON { color: var(--q-common); } .q-UNCOMMON { color: var(--q-uncommon); }
+  .q-RARE { color: var(--q-rare); } .q-EPIC { color: var(--q-epic); } .q-LEGENDARY { color: var(--q-legendary); }
+
+  .money { white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .money .g { color: var(--gold); } .money .s { color: var(--silver); } .money .c { color: var(--copper); }
+  .money i { font-style: normal; font-size: 10px; margin: 0 3px 0 1px; opacity: .85; }
+  .up { color: var(--up); } .down { color: var(--down); }
+
+  .search { position: relative; flex: 1 1 260px; max-width: 420px; }
+  .search input { width: 100%; }
+  .results { position: absolute; top: 100%; left: 0; right: 0; z-index: 20; background: var(--panel2);
+    border: 1px solid var(--accent2); border-radius: 0 0 6px 6px; max-height: 360px; overflow-y: auto; }
+  .results div { padding: 5px 8px; display: flex; justify-content: space-between; gap: 8px; align-items: center; cursor: pointer; }
+  .results div:hover, .results div.sel { background: #2c2416; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; margin: 10px 0; }
+  .card { background: var(--panel2); border: 1px solid var(--line); border-radius: 6px; padding: 7px 10px; }
+  .card .k { font-size: 11px; color: var(--muted); }
+  .card .v { font-size: 15px; margin-top: 2px; }
+
+  /* Detail panel */
+  #detail { position: fixed; top: 0; right: 0; bottom: 0; width: min(560px, 100vw); background: var(--panel);
+    border-left: 1px solid var(--accent2); z-index: 30; overflow-y: auto; transform: translateX(100%);
+    transition: transform .18s ease; padding: 14px 16px 30px; box-shadow: -10px 0 30px #0008; }
+  #detail.open { transform: none; }
+  #detail h2 { margin: 0; font: 700 19px Georgia, serif; }
+  #detail h3 { font-size: 13px; color: var(--accent2); margin: 18px 0 6px; text-transform: uppercase; letter-spacing: .04em; }
+  .close { position: absolute; top: 10px; right: 12px; background: none; border: 0; font-size: 22px; color: var(--muted); }
+  .chart { width: 100%; height: 200px; display: block; }
+  .chart text { fill: var(--muted); font-size: 10px; }
+  .legend { display: flex; gap: 14px; font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .legend b { display: inline-block; width: 12px; height: 3px; vertical-align: middle; margin-right: 4px; }
+  .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 5px; overflow: hidden; }
+  .seg button { background: var(--panel2); border: 0; padding: 3px 9px; font-size: 12px; color: var(--muted); }
+  .seg button.on { background: #3b2d12; color: var(--accent); }
+
+  .reagents { padding: 6px 8px 10px 38px; background: #14100b; }
+  .reagents table td { border: 0; padding: 2px 8px; }
+  footer { color: var(--muted); font-size: 11px; padding: 10px 14px 20px; }
+  .empty { padding: 26px; text-align: center; color: var(--muted); }
+  /* Als App auf dem Home-Bildschirm: nicht unter Uhrzeit/Notch rutschen */
+  header { padding-top: max(8px, env(safe-area-inset-top)); padding-left: max(14px, env(safe-area-inset-left)); padding-right: max(14px, env(safe-area-inset-right)); }
+  footer { padding-bottom: max(20px, env(safe-area-inset-bottom)); }
+  #detail { padding-top: max(14px, env(safe-area-inset-top)); padding-bottom: max(30px, env(safe-area-inset-bottom)); }
+  .close { top: max(10px, env(safe-area-inset-top)); }
+  @media (max-width: 700px) {
+    header { padding: 8px 10px; } main { padding: 10px 8px 30px; }
+    .status { margin-left: 0; width: 100%; }
+    th, td { padding: 4px 5px; }
+    .hide-sm { display: none; }
+  }
+</style>
+</head>
+<body>
+<header id="hdr">
+  <div class="brand">⚖ AH-Begleiter</div>
+  <div class="ctrl"><label for="region">Region</label><select id="region"></select></div>
+  <div class="ctrl"><label for="house">Auktionshaus</label><select id="house"></select></div>
+  <div class="ctrl"><label for="refresh">Auto</label>
+    <select id="refresh">
+      <option value="5">alle 5 Min.</option><option value="10">alle 10 Min.</option>
+      <option value="15">alle 15 Min.</option><option value="30">alle 30 Min.</option><option value="0">aus</option>
+    </select>
+    <button class="btn small" id="reload" title="Jetzt neu laden">↻</button>
+  </div>
+  <div class="status"><span id="snap">–</span><span><span class="dot" id="dot"></span> <span id="net">bereit</span></span></div>
+</header>
+<nav id="tabs"></nav>
+<main id="view"></main>
+<aside id="detail" aria-hidden="true"></aside>
+<footer>Daten: <a href="https://forever-ah.com" target="_blank" rel="noopener">Forever AH</a> · Blizzard Battle.net API.
+  Preise werden etwa stündlich aktualisiert. Nicht mit Blizzard verbunden. Nur für den privaten Gebrauch.</footer>
+
+<script>
+"use strict";
+/* ---------- Grundlagen ---------- */
+const API = "https://forever-ah.com/v1";
+const MIN_GAP = 1100;            // ~1 Anfrage pro Sekunde (Bitte des Betreibers)
+const TTL = 5 * 60 * 1000;       // Cache 5 Minuten
+
+const store = {
+  get(k, d) { try { const v = localStorage.getItem("ahb." + k); return v == null ? d : JSON.parse(v); } catch { return d; } },
+  set(k, v) { try { localStorage.setItem("ahb." + k, JSON.stringify(v)); } catch {} },
+};
+const $ = (s) => document.querySelector(s);
+function el(tag, attrs, ...kids) {
+  const e = document.createElement(tag);
+  if (attrs) for (const [k, v] of Object.entries(attrs)) {
+    if (v == null || v === false) continue;
+    if (k === "class") e.className = v;
+    else if (k === "text") e.textContent = v;
+    else if (k.startsWith("on")) e.addEventListener(k.slice(2), v);
+    else if (k === "style") e.style.cssText = v;
+    else e.setAttribute(k, v === true ? "" : v);
+  }
+  for (const c of kids.flat(Infinity)) if (c != null && c !== false) e.append(c.nodeType ? c : String(c));
+  return e;
+}
+
+/* ---------- API mit Drosselung, Cache und 429-Behandlung ---------- */
+const cache = new Map(), inflight = new Map();
+let queue = Promise.resolve(), lastReq = 0, pending = 0;
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+function netState(state, text) { $("#dot").className = "dot " + state; $("#net").textContent = text; }
+function api(path, params, ttl = TTL) {
+  const qs = params ? new URLSearchParams(Object.entries(params).filter(([, v]) => v !== "" && v != null)).toString() : "";
+  const url = API + path + (qs ? "?" + qs : "");
+  const hit = cache.get(url);
+  if (hit && Date.now() - hit.t < ttl) return Promise.resolve(hit.d);
+  if (inflight.has(url)) return inflight.get(url);
+  pending++; netState("busy", `lädt (${pending})`);
+  const p = queue.then(async () => {
+    for (let attempt = 0; ; attempt++) {
+      const wait = lastReq + MIN_GAP - Date.now();
+      if (wait > 0) await sleep(wait);
+      lastReq = Date.now();
+      let res;
+      try { res = await fetch(url); }
+      catch (e) { if (attempt < 2) { await sleep(2000); continue; } throw new Error("Keine Verbindung zu forever-ah.com"); }
+      if (res.status === 429 && attempt < 3) {
+        const ra = Number(res.headers.get("Retry-After")) || 5;
+        netState("busy", `Limit erreicht, warte ${ra}s`);
+        await sleep(ra * 1000); continue;
+      }
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || `Fehler ${res.status}`);
+      cache.set(url, { t: Date.now(), d: data });
+      return data;
+    }
+  });
+  queue = p.catch(() => {});
+  inflight.set(url, p);
+  p.then(() => { if (--pending === 0) netState("", "bereit"); else netState("busy", `lädt (${pending})`); },
+         (e) => { --pending; netState("err", e.message); })
+   .finally(() => inflight.delete(url));
+  return p;
+}
+
+/* ---------- Connector-Modus (auf claude.ai: direkte API-Aufrufe sind dort gesperrt) ---------- */
+const SERVER = "Forever AH";
+let MODE = "rest", MCP = null;
+const isMcp = () => MODE === "mcp";
+class ConnError extends Error { constructor(code, msg) { super(msg); this.code = code; } }
+async function mcpCall(tool, input) {
+  pending++; netState("busy", `lädt (${pending})`);
+  const opts = { cache: { staleTime: TTL, gcTime: 30 * 60 * 1000 } };
+  try {
+    let res;
+    try { res = await MCP.callTool(SERVER, tool, input, opts); }
+    catch (e) {
+      if (!e?.retryable) throw e;   // einmaliger zweiter Versuch nur bei als wiederholbar markierten Fehlern
+      await sleep(Math.min(e.retryAfterMs ?? 0, 60000) + 800 + Math.random() * 1200);
+      res = await MCP.callTool(SERVER, tool, input, opts);
+    }
+    if (--pending === 0) netState("", "bereit"); else netState("busy", `lädt (${pending})`);
+    return res.payload ?? res.structuredContent ?? {};
+  } catch (e) {
+    --pending;
+    const code = e?.code || "upstream_error";
+    const err = new ConnError(code, connErrText(code, e?.message));
+    err.detail = `Code: ${code}${e?.retryable ? " (wiederholbar)" : ""}${e?.message ? " · " + e.message : ""}`;
+    netState("err", code === "tool_error" ? "bereit" : "Connector-Problem");
+    throw err;
+  }
+}
+function connErrText(code, msg) {
+  switch (code) {
+    case "server_not_connected": case "server_not_found":
+      return `Der Connector „${SERVER}“ ist nicht verbunden. Füge ihn auf claude.ai unter Einstellungen → Connectors hinzu (URL: https://forever-ah.com/mcp).`;
+    case "selection_required": return `Es gibt mehrere Connectors namens „${SERVER}“. Bitte wähle in der Abfrage von Claude einen aus.`;
+    case "needs_reauth": return `Der Connector „${SERVER}“ muss neu verbunden werden (claude.ai → Einstellungen → Connectors).`;
+    case "not_in_manifest": case "approval_required": case "consent_required": case "not_granted":
+      return `Diese Seite darf den Connector „${SERVER}“ noch nicht nutzen. Tippe auf „Erneut versuchen“ und erlaube den Zugriff.`;
+    case "blocked_by_policy": return "Der Connector ist durch eine Richtlinie deiner Organisation gesperrt.";
+    case "server_unavailable": return "Forever AH ist gerade nicht erreichbar. Versuche es gleich noch einmal.";
+    case "tool_error": return msg || "Keine Daten.";
+    default: return `Claude konnte die Freigabe für den Connector „${SERVER}“ nicht bestätigen. Tippe auf „Zugriff erlauben“. ` +
+      "Klappt das in der Handy-App nicht, öffne die Seite einmal am PC auf claude.ai und erlaube den Zugriff dort – die Freigabe gilt dann auch auf dem Handy.";
+  }
+}
+const CONSENT_CODES = new Set(["not_in_manifest", "approval_required", "consent_required", "not_granted", "upstream_error", "capability_disabled"]);
+async function askAccess() {
+  try {
+    const perm = window.claude && await window.claude.use("permissions");
+    if (perm) {
+      const st = await perm.request(["mcp:" + SERVER]).catch(() => ({}));
+      const s = st["mcp:" + SERVER];
+      if (s === "denied") {
+        try { await perm.manage(); } catch { alert("Den Zugriff kannst du im Menü dieser Seite unter „Berechtigungen“ wieder erlauben."); }
+      } else if (s !== "granted") {
+        try { await perm.manage(); return start(); } catch {}
+        alert("Diese App kann die Freigabe nicht abfragen.\n\nÖffne den Link einmal am PC auf claude.ai (oder auf dem Handy in Safari statt in der Claude-App) und erlaube dort den Zugriff. Die Freigabe gilt danach auch hier.");
+      }
+    }
+  } catch {}
+  if (MCP) await MCP.invalidate(SERVER).catch(() => {});
+  start();
+}
+function slugHouse(h) {
+  const id = h.house.split("-")[1];
+  return { house_key: h.house, region: h.region, house_id: id === "all" ? 0 : Number(id), name: h.name,
+    house_type: h.type, last_snapshot: h.updated };
+}
+const mcpItem = (it) => ({ item_id: it.item_id, name: it.name, quality: it.quality || "COMMON", item_class: it.class, item_subclass: it.subclass, item_level: it.item_level, has_icon: false });
+
+/* ---------- Formatierung ---------- */
+const nf = new Intl.NumberFormat("de-DE");
+const nf1 = new Intl.NumberFormat("de-DE", { maximumFractionDigits: 1 });
+function money(c) {
+  if (c == null || isNaN(c)) return el("span", { class: "muted", text: "–" });
+  const neg = c < 0; c = Math.round(Math.abs(c));
+  const g = Math.floor(c / 10000), s = Math.floor((c % 10000) / 100), k = c % 100;
+  const parts = [];
+  if (g) parts.push(el("span", { class: "g", text: nf.format(g) }), el("i", { class: "g", text: "g" }));
+  if (g || s) parts.push(el("span", { class: "s", text: g ? String(s).padStart(2, "0") : s }), el("i", { class: "s", text: "s" }));
+  if (g < 100) parts.push(el("span", { class: "c", text: (g || s) ? String(k).padStart(2, "0") : k }), el("i", { class: "c", text: "c" }));
+  return el("span", { class: "money" }, neg ? "−" : "", parts);
+}
+function moneyText(c) {
+  if (c == null) return "–";
+  c = Math.round(c); const g = Math.floor(c / 10000), s = Math.floor((c % 10000) / 100), k = c % 100;
+  return g ? `${nf.format(g)}g ${s}s` : s ? `${s}s ${k}c` : `${k}c`;
+}
+function pct(v, invert) {
+  if (v == null || !isFinite(v)) return el("span", { class: "muted", text: "–" });
+  const cls = Math.abs(v) < 0.5 ? "muted" : (v > 0) !== !!invert ? "up" : "down";
+  const txt = Math.abs(v) >= 1000 ? (v > 0 ? "+" : "") + nf.format(Math.round(v)) + " %" : (v > 0 ? "+" : "") + nf1.format(v) + " %";
+  return el("span", { class: cls, text: txt });
+}
+function ago(iso) {
+  if (!iso) return "–";
+  const m = Math.round((Date.now() - new Date(iso)) / 60000);
+  return m < 1 ? "gerade eben" : m < 60 ? `vor ${m} Min.` : `vor ${Math.floor(m / 60)} Std. ${m % 60} Min.`;
+}
+function itemCell(it, onClick) {
+  it = it || {};
+  const name = it.name || `Item #${it.item_id}`;
+  return el("span", { class: "item", title: [it.item_class, it.item_subclass].filter(Boolean).join(" · ") },
+    it.has_icon !== false && it.item_id ? iconImg(it.item_id) : null,
+    el("span", { class: "q-" + (it.quality || "COMMON"), text: name, onclick: onClick }));
+}
+/* Icons: Der Server erlaubt keine <img>-Einbindung von fremden Seiten, aber fetch() (CORS offen).
+   Deshalb nachrangig laden (nur wenn keine Datenanfrage wartet) und als data-URL lokal merken. */
+const ICON_BLANK = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
+const iconMem = new Map(), iconWait = new Map();
+let iconBusy = false;
+function iconImg(id) {
+  if (isMcp()) return null;   // Icons nur in der PC-Version (direkter Zugriff nötig)
+  const img = el("img", { alt: "", src: ICON_BLANK, "data-icon": id, style: "background:#2a2216" });
+  const known = iconMem.get(id) || store.get("icon." + id, null);
+  if (known) { iconMem.set(id, known); img.src = known; return img; }
+  if (!iconWait.has(id)) iconWait.set(id, new Set());
+  iconWait.get(id).add(img);
+  setTimeout(pumpIcons, 200);   // erst nachdem die Zeile im Dokument hängt
+  return img;
+}
+async function pumpIcons() {
+  if (iconBusy) return;
+  iconBusy = true;
+  try {
+    while (iconWait.size) {
+      if (pending > 0) { await sleep(400); continue; }           // Daten haben Vorrang
+      const [id, imgs] = iconWait.entries().next().value;
+      iconWait.delete(id);
+      if (iconMem.has(id)) { for (const i of imgs) i.src = iconMem.get(id); continue; }
+      if (![...imgs].some((i) => i.isConnected)) continue;        // nicht mehr sichtbar → überspringen
+      const wait = lastReq + MIN_GAP - Date.now();
+      if (wait > 0) await sleep(wait);
+      if (pending > 0) { iconWait.set(id, imgs); continue; }
+      lastReq = Date.now();
+      try {
+        const res = await fetch(`${API}/items/${id}/icon`);
+        if (res.status === 429) { iconWait.set(id, imgs); await sleep((Number(res.headers.get("Retry-After")) || 5) * 1000); continue; }
+        if (!res.ok) continue;
+        const blob = await res.blob();
+        const url = await new Promise((r) => { const fr = new FileReader(); fr.onload = () => r(fr.result); fr.readAsDataURL(blob); });
+        iconMem.set(id, url); store.set("icon." + id, url);
+        for (const i of imgs) i.src = url;
+        for (const i of document.querySelectorAll(`img[data-icon="${id}"]`)) i.src = url;
+      } catch {}
+    }
+  } finally { iconBusy = false; }
+}
+const TIME_LEFT = { SHORT: "< 30 Min.", MEDIUM: "30 Min.–2 Std.", LONG: "2–12 Std.", VERY_LONG: "12–48 Std." };
+
+/* ---------- Zustand ---------- */
+const S = {
+  houses: [], region: store.get("region", "eu"), house: null,
+  tab: store.get("tab", "watch"),
+  watch: store.get("watch", []),            // [{id, name, quality, target}]
+  shop: store.get("shop", []),              // [{id, name, quality, qty}]
+  craft: store.get("craft", { prof: "197", sort: "daily", sold: "1", complete: true, q: "" }),
+  deals: store.get("deals", { mode: "market", minProfit: 1, hideJunk: true }),
+  movers: store.get("movers", { window: "24", minQty: 5, hideJunk: true }),
+  refresh: store.get("refresh", 10),
+  lastLoad: 0, token: 0, alerts: 0, notified: new Set(),
+};
+function save() {
+  for (const k of ["region", "tab", "watch", "shop", "craft", "deals", "movers", "refresh"]) store.set(k, S[k]);
+  store.set("house." + MODE, S.house);
+}
+const houseObj = () => S.houses.find((h) => String(h.house_key) === String(S.house));
+const houseByKey = (k) => S.houses.find((h) => String(h.house_key) === String(k));
+function houseLabel(h) {
+  if (!h) return "?";
+  if (h.house_type === "unified") return `Alle Häuser (${h.region.toUpperCase()})`;
+  const n = h.name.replace(" Auction House", "").replace("Alliance", "Allianz");
+  return `${n} #${h.house_id}`;
+}
+function houseNameShort(name, id) { return houseLabel({ name: name || "", house_id: id, house_type: "real" }); }
+
+/* ---------- Tabs ---------- */
+const TABS = [
+  { id: "watch", label: "Merkliste", render: renderWatch },
+  { id: "craft", label: "Handwerk", render: renderCraft, mcp: renderCraftMcp },
+  { id: "deals", label: "Schnäppchen", render: renderDeals, mcp: renderDealsMcp },
+  { id: "movers", label: "Preisbewegungen", render: renderMovers, mcp: renderMoversMcp },
+  { id: "shop", label: "Einkaufsliste", render: renderShop, mcp: renderShopMcp },
+];
+function errorBox(e) {
+  const box = el("div", { class: "empty" }, el("p", { class: "err", text: (e.code ? "" : "Fehler: ") + e.message }));
+  if (e.code && CONSENT_CODES.has(e.code)) box.append(el("button", { class: "btn primary", onclick: askAccess }, "Zugriff erlauben"), " ");
+  if (e.code && e.code !== "tool_error") box.append(el("button", { class: "btn", onclick: () => { start(); } }, "Erneut versuchen"));
+  if (e.detail) {
+    const diag = el("p", { class: "hint", style: "margin-top:14px;font-size:11px", text: e.detail });
+    box.append(diag);
+    (async () => {
+      try {
+        const perm = window.claude && await window.claude.use("permissions");
+        const st = perm ? await perm.state("mcp:" + SERVER).catch(() => "?") : "keine";
+        diag.textContent += ` · Freigabe: ${st}`;
+      } catch {}
+    })();
+  }
+  return box;
+}
+function drawTabs() {
+  $("#tabs").replaceChildren(...TABS.map((t) => el("button", {
+    class: t.id === S.tab ? "on" : "", onclick: () => { S.tab = t.id; save(); drawTabs(); render(); } },
+    t.label, t.id === "watch" && S.alerts ? el("span", { class: "badge", text: S.alerts }) : null)));
+}
+async function render() {
+  const tab = TABS.find((t) => t.id === S.tab) || TABS[0];
+  const token = ++S.token;
+  const view = $("#view");
+  try {
+    await ((isMcp() && tab.mcp) || tab.render)(view, () => token === S.token);
+    S.lastLoad = Date.now();
+  } catch (e) {
+    if (token === S.token) view.replaceChildren(errorBox(e));
+  }
+}
+function updateSnap(asOf) {
+  const h = houseObj();
+  const ts = asOf || h?.last_snapshot;
+  $("#snap").textContent = ts ? `Daten ${new Date(ts).toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" })} (${ago(ts)})` : "–";
+}
+
+/* ---------- Gemeinsame Tabellenhilfe ---------- */
+function sortableTable(cols, rows, state, onRow, rowClass) {
+  const sorted = [...rows];
+  const col = cols.find((c) => c.key === state.key);
+  if (col?.val) sorted.sort((a, b) => {
+    const x = col.val(a), y = col.val(b);
+    const r = (x == null) - (y == null) || (typeof x === "string" ? x.localeCompare(y) : x - y);
+    return state.dir * r;
+  });
+  const thead = el("tr", null, cols.map((c) => el("th", {
+    class: [c.num ? "num" : "", c.val ? "sortable" : "", c.sm ? "hide-sm" : ""].join(" "),
+    title: c.title, onclick: c.val ? () => { state.dir = state.key === c.key ? -state.dir : (c.num ? -1 : 1); state.key = c.key; redraw(); } : null },
+    c.label, state.key === c.key ? (state.dir > 0 ? " ▲" : " ▼") : "")));
+  const tbody = el("tbody");
+  const wrap = el("div", { class: "tablewrap" }, el("table", null, el("thead", null, thead), tbody));
+  function redraw() {
+    const fresh = sortableTable(cols, rows, state, onRow, rowClass);
+    wrap.replaceWith(fresh);
+  }
+  for (const r of sorted) {
+    tbody.append(el("tr", { class: [onRow ? "click" : "", rowClass ? rowClass(r) : ""].join(" "), onclick: onRow ? () => onRow(r) : null },
+      cols.map((c) => el("td", { class: [c.num ? "num" : "", c.sm ? "hide-sm" : ""].join(" ") }, c.cell(r)))));
+  }
+  if (!sorted.length) tbody.append(el("tr", null, el("td", { colspan: cols.length, class: "empty", text: "Keine Einträge." })));
+  return wrap;
+}
+
+/* ---------- Suche ---------- */
+function searchBox(placeholder, onPick) {
+  const input = el("input", { type: "text", placeholder, autocomplete: "off" });
+  const list = el("div", { class: "results", hidden: true });
+  let timer, items = [], sel = -1;
+  function show() {
+    list.replaceChildren(...items.map((it, i) => el("div", { class: i === sel ? "sel" : "", onmousedown: (e) => { e.preventDefault(); pick(it); } },
+      itemCell(it), el("span", { class: "hint", text: it.item_class || "" }))));
+    list.hidden = !items.length;
+  }
+  function pick(it) { input.value = ""; items = []; show(); onPick(it); }
+  input.addEventListener("input", () => {
+    clearTimeout(timer);
+    const q = input.value.trim();
+    if (q.length < 2) { items = []; show(); return; }
+    timer = setTimeout(async () => {
+      try {
+        const res = isMcp() ? (await mcpCall("search_items", { query: q })).items.map(mcpItem)
+                            : await api("/items/search", { q }, 60 * 60 * 1000);
+        if (input.value.trim() !== q) return;
+        items = (Array.isArray(res) ? res : res.rows || []).slice(0, 25); sel = items.length ? 0 : -1; show();
+      } catch (e) { items = []; show(); }
+    }, 450);
+  });
+  input.addEventListener("keydown", (e) => {
+    if (list.hidden) return;
+    if (e.key === "ArrowDown") { sel = Math.min(sel + 1, items.length - 1); show(); e.preventDefault(); }
+    else if (e.key === "ArrowUp") { sel = Math.max(sel - 1, 0); show(); e.preventDefault(); }
+    else if (e.key === "Enter" && items[sel]) { pick(items[sel]); e.preventDefault(); }
+    else if (e.key === "Escape") { items = []; show(); }
+  });
+  input.addEventListener("blur", () => setTimeout(() => { list.hidden = true; }, 150));
+  input.addEventListener("focus", () => { if (items.length) list.hidden = false; });
+  return el("div", { class: "search" }, input, list);
+}
+const slim = (it) => ({ id: it.item_id, name: it.name, quality: it.quality });
+
+/* ---------- Merkliste ---------- */
+const watchSort = { key: "name", dir: 1 };
+async function renderWatch(view, alive) {
+  const head = el("div", { class: "bar" },
+    searchBox("Item suchen und zur Merkliste hinzufügen …", (it) => {
+      if (!S.watch.some((w) => w.id === it.item_id)) { S.watch.push({ ...slim(it), target: null }); save(); }
+      render();
+    }),
+    el("button", { class: "btn", onclick: enableNotify, title: "Desktop-Benachrichtigung, wenn ein Zielpreis erreicht ist" },
+      "🔔 Benachrichtigungen" + (notifyOn() ? " an" : "")),
+    el("span", { class: "hint", text: "Zielpreis in Gold eintragen: Zeile wird grün, sobald das günstigste Angebot darunter liegt." }));
+  if (!S.watch.length) {
+    view.replaceChildren(head, el("div", { class: "empty" }, "Deine Merkliste ist leer. Suche oben nach einem Item, z. B. „Runecloth“ oder „Black Lotus“."));
+    S.alerts = 0; drawTabs(); return;
+  }
+  view.replaceChildren(head, el("div", { class: "empty", text: "Lade Preise …" }));
+  const data = isMcp() ? await watchDataMcp()
+    : await api(`/houses/${S.house}/market`, { ids: S.watch.map((w) => w.id).join(","), limit: 100, window: 24 });
+  if (!alive()) return;
+  updateSnap(houseObj()?.last_snapshot);
+  const byId = new Map(data.rows.map((r) => [r.item.item_id, r]));
+  const rows = S.watch.map((w) => ({ w, r: byId.get(w.id) }));
+  S.alerts = rows.filter(isAlert).length;
+  drawTabs(); notifyAlerts(rows, data.as_of);
+
+  const cols = [
+    { key: "name", label: "Item", val: (x) => x.w.name || "", cell: (x) => itemCell(x.r?.item || { item_id: x.w.id, name: x.w.name, quality: x.w.quality }) },
+    { key: "min", label: "Günstigstes", num: true, val: (x) => x.r?.current.min_unit, cell: (x) => x.r ? money(x.r.current.min_unit) : el("span", { class: "muted", text: "keine Angebote" }) },
+    { key: "mv", label: "Marktwert", num: true, title: "14-Tage-Durchschnitt des 10. Perzentils", val: (x) => x.r?.stats?.market_value, cell: (x) => money(x.r?.stats?.market_value) },
+    { key: "vs", label: "vs. Markt", num: true, title: "Günstigstes Angebot im Vergleich zum Marktwert", val: (x) => rel(x), cell: (x) => pct(rel(x), true) },
+    { key: "med", label: "Median", num: true, sm: true, val: (x) => x.r?.current.median_unit, cell: (x) => money(x.r?.current.median_unit) },
+    { key: "chg", label: "24 Std.", num: true, title: "Änderung des Medians in 24 Stunden", val: (x) => x.r?.median_change_pct, cell: (x) => pct(x.r?.median_change_pct) },
+    { key: "qty", label: "Menge", num: true, sm: true, val: (x) => x.r?.current.quantity, cell: (x) => x.r ? nf.format(x.r.current.quantity) : "–" },
+    { key: "sold", label: "Verk./Tag", num: true, sm: true, title: "Geschätzte Verkäufe pro Tag", val: (x) => x.r?.stats?.sold_per_day, cell: (x) => x.r?.stats ? nf1.format(x.r.stats.sold_per_day) : "–" },
+    { key: "target", label: "Ziel (g)", num: true, val: (x) => x.w.target, cell: (x) => targetInput(x.w) },
+    { key: "rm", label: "", cell: (x) => el("button", { class: "btn small", title: "Entfernen", onclick: (e) => { e.stopPropagation(); S.watch = S.watch.filter((w) => w !== x.w); save(); render(); } }, "✕") },
+  ];
+  view.replaceChildren(head,
+    sortableTable(cols, rows, watchSort, (x) => openDetail(x.w.id), (x) => isAlert(x) ? "alert" : ""),
+    el("p", { class: "hint", text: `Stand: ${ago(data.as_of)} · Klick auf eine Zeile öffnet Verlauf, Preise pro Haus und aktuelle Auktionen.` }));
+}
+function priceToRow(p) {
+  return { item: { item_id: p.item.item_id, name: p.item.name, quality: p.item.quality, has_icon: false },
+    current: { min_unit: p.lowest_buyout, median_unit: p.median, quantity: p.units_listed },
+    median_change_pct: p.change_24h_pct,
+    stats: { market_value: p.market_value, sold_per_day: p.sold_per_day_estimate, trend_pct: p.trend_7d_pct } };
+}
+async function watchDataMcp() {
+  const res = await Promise.all(S.watch.map((w) => mcpCall("get_item_price", { item_id: w.id, house: S.house }).catch((e) => {
+    if (e.code === "tool_error") return null;   // Item nie gesehen / nicht gelistet
+    throw e;
+  })));
+  const rows = res.filter((p) => p && p.listed && p.lowest_buyout != null).map(priceToRow);
+  return { rows, as_of: res.find(Boolean)?.house?.updated };
+}
+function rel(x) { const m = x.r?.stats?.market_value, c = x.r?.current.min_unit; return m && c ? (c / m - 1) * 100 : null; }
+function isAlert(x) { return x.w.target != null && x.r && x.r.current.min_unit <= x.w.target * 10000; }
+function targetInput(w) {
+  return el("input", { type: "number", min: "0", step: "0.01", value: w.target ?? "", placeholder: "–", style: "width:80px",
+    onclick: (e) => e.stopPropagation(),
+    onchange: (e) => { const v = parseFloat(e.target.value.replace(",", ".")); w.target = isFinite(v) && v > 0 ? v : null; save(); render(); } });
+}
+function notifyOn() { try { return "Notification" in window && Notification.permission === "granted"; } catch { return false; } }
+async function enableNotify() {
+  try {
+    if (!("Notification" in window)) return alert("Dieser Browser unterstützt keine Benachrichtigungen.");
+    const p = await Notification.requestPermission();
+    if (p !== "granted") alert("Benachrichtigungen wurden nicht erlaubt. Treffer werden trotzdem grün markiert und im Tab-Titel gezählt.");
+  } catch {}
+  render();
+}
+function notifyAlerts(rows, asOf) {
+  document.title = S.alerts ? `(${S.alerts}) AH-Begleiter` : "AH-Begleiter";
+  for (const x of rows.filter(isAlert)) {
+    const key = `${S.house}:${x.w.id}:${asOf}`;
+    if (S.notified.has(key)) continue;
+    S.notified.add(key);
+    if (notifyOn()) try {
+      new Notification(`${x.w.name} unter Zielpreis`, { body: `Günstigstes Angebot: ${moneyText(x.r.current.min_unit)} (Ziel ${x.w.target}g) – ${houseLabel(houseObj())}` });
+    } catch {}
+  }
+}
+
+/* ---------- Detailansicht ---------- */
+let detailRange = store.get("range", "7d");
+const RANGES = { "48h": [2, "hour"], "7d": [7, "hour"], "30d": [30, "day"], "90d": [90, "day"] };
+async function openDetailMcp(id, box, alive) {
+  const days = RANGES[detailRange][0];
+  let p;
+  try { p = await mcpCall("get_item_price", { item_id: id, house: S.house }); }
+  catch (e) { if (e.code !== "tool_error") throw e; p = null; }
+  if (!alive()) return;
+  const known = S.watch.find((w) => w.id === id) || S.shop.find((s) => s.id === id) || {};
+  const it = p?.item ? { ...p.item, has_icon: false } : { item_id: id, name: known.name, quality: known.quality };
+  const inWatch = S.watch.some((w) => w.id === id);
+  const chartBox = el("div", null, el("p", { class: "hint", text: "Lade Verlauf …" }));
+  const v = (x) => el("div", { class: "v" }, x);
+  box.replaceChildren(
+    el("button", { class: "close", onclick: closeDetail, title: "Schließen" }, "×"),
+    el("h2", null, itemCell(it)),
+    el("div", { class: "bar", style: "margin-top:10px" },
+      el("button", { class: "btn" + (inWatch ? "" : " primary"), onclick: () => {
+        if (inWatch) S.watch = S.watch.filter((w) => w.id !== id); else S.watch.push({ ...slim(it), target: null });
+        save(); render(); openDetail(id); } }, inWatch ? "Von Merkliste entfernen" : "+ Merkliste"),
+      el("button", { class: "btn", onclick: () => addToShop(it, 1) }, "+ Einkaufsliste"),
+      el("a", { class: "btn", href: `https://www.wowhead.com/item=${id}`, target: "_blank", rel: "noopener", style: "text-decoration:none" }, "Wowhead ↗")),
+    p && p.listed ? el("div", { class: "cards" }, [
+      ["Günstigstes", money(p.lowest_buyout)], ["Median", money(p.median)], ["Marktwert (14 T.)", money(p.market_value)],
+      ["Trend 7 Tage", pct(p.trend_7d_pct)], ["24 Std.", pct(p.change_24h_pct)],
+      ["Verkäufe/Tag", p.sold_per_day_estimate != null ? nf1.format(p.sold_per_day_estimate) : "–"],
+      ["Angebote", `${nf.format(p.units_listed ?? 0)} Stk. / ${nf.format(p.auctions ?? 0)}`], ["Händler kauft", money(p.vendor_sell_price)],
+    ].map(([k, x]) => el("div", { class: "card" }, el("div", { class: "k", text: k }), v(x))))
+      : el("p", { class: "hint", text: "Derzeit in diesem Haus nicht gelistet." }),
+    el("h3", null, "Preisverlauf · ", houseLabel(houseObj())),
+    el("div", { class: "seg" }, Object.keys(RANGES).map((r) => el("button", { class: r === detailRange ? "on" : "",
+      onclick: () => { detailRange = r; store.set("range", r); openDetail(id); } }, r))),
+    chartBox,
+    ...(p?.lowest_by_house?.length ? [el("h3", null, `Günstigstes Angebot pro Haus (${S.region.toUpperCase()})`),
+      el("div", { class: "tablewrap" }, el("table", null,
+        el("tr", null, el("th", null, "Haus"), el("th", { class: "num" }, "Günstigstes")),
+        p.lowest_by_house.map((x) => el("tr", { style: x.house === S.house ? "background:#2a2312" : "" },
+          el("td", null, houseLabel(houseByKey(x.house) || { name: x.name, house_id: x.house.split("-")[1], house_type: "real" })),
+          el("td", { class: "num" }, money(x.lowest_buyout))))))] : []),
+    el("p", { class: "hint", style: "margin-top:14px", text: "Einzelne Auktionen gibt es nur in der PC-Version." }));
+  try {
+    const h = await mcpCall("get_price_history", { item_id: id, house: S.house, days });
+    if (!alive()) return;
+    const cols = h.columns || ["time", "lowest", "median", "units"];
+    const ix = (n) => cols.indexOf(n);
+    const pts = (h.points || []).map((r) => ({ ts: r[ix("time")], min_unit: r[ix("lowest")], median_unit: r[ix("median")], p10_unit: null, quantity: r[ix("units")] }));
+    chartBox.replaceChildren(chart(pts, days <= 7 ? "hour" : "day"));
+  } catch (e) { if (alive()) chartBox.replaceChildren(el("p", { class: "hint", text: e.message })); }
+}
+async function openDetail(id) {
+  const box = $("#detail");
+  box.classList.add("open"); box.setAttribute("aria-hidden", "false");
+  box.replaceChildren(el("button", { class: "close", onclick: closeDetail, title: "Schließen" }, "×"), el("p", { class: "muted", text: "Lade …" }));
+  const token = (openDetail.t = (openDetail.t || 0) + 1);
+  const alive = () => token === openDetail.t && box.classList.contains("open");
+  if (isMcp()) {
+    try { await openDetailMcp(id, box, alive); }
+    catch (e) { if (alive()) box.append(el("p", { class: "err", text: e.message })); }
+    return;
+  }
+  try {
+    const [days, res] = RANGES[detailRange];
+    const from = new Date(Date.now() - days * 864e5).toISOString();
+    const hist = await api(`/houses/${S.house}/items/${id}/history`, { from, resolution: res }, 10 * 60 * 1000);
+    if (!alive()) return;
+    const it = hist.item, pts = hist.points || [];
+    const last = pts[pts.length - 1];
+    const inWatch = S.watch.some((w) => w.id === id);
+    const statsBox = el("div", { class: "cards" });
+    const chartBox = el("div");
+    const housesBox = el("div", null, el("p", { class: "hint", text: "Lade Preise pro Haus …" }));
+    const aucBox = el("div", null, el("p", { class: "hint", text: "Lade Auktionen …" }));
+    box.replaceChildren(
+      el("button", { class: "close", onclick: closeDetail, title: "Schließen" }, "×"),
+      el("h2", null, itemCell(it)),
+      el("div", { class: "hint", text: [it.item_class, it.item_subclass, it.item_level ? `Stufe ${it.item_level}` : null, it.required_level ? `ab Level ${it.required_level}` : null].filter(Boolean).join(" · ") }),
+      el("div", { class: "bar", style: "margin-top:10px" },
+        el("button", { class: "btn" + (inWatch ? "" : " primary"), onclick: () => {
+          if (inWatch) S.watch = S.watch.filter((w) => w.id !== id); else S.watch.push({ ...slim(it), target: null });
+          save(); render(); openDetail(id); } }, inWatch ? "Von Merkliste entfernen" : "+ Merkliste"),
+        el("button", { class: "btn", onclick: () => { addToShop(it, 1); } }, "+ Einkaufsliste"),
+        el("a", { class: "btn", href: `https://www.wowhead.com/item=${id}`, target: "_blank", rel: "noopener", style: "text-decoration:none" }, "Wowhead ↗")),
+      statsBox,
+      el("h3", null, "Preisverlauf · ", houseLabel(houseObj())),
+      el("div", { class: "seg" }, Object.keys(RANGES).map((r) => el("button", { class: r === detailRange ? "on" : "",
+        onclick: () => { detailRange = r; store.set("range", r); openDetail(id); } }, r))),
+      chartBox,
+      el("h3", null, `Preise in allen Häusern (${S.region.toUpperCase()})`), housesBox,
+      el("h3", null, "Günstigste Auktionen jetzt"), aucBox);
+    chartBox.append(chart(pts, res));
+
+    const stats = await api(`/houses/${S.house}/items/${id}/stats`).catch(() => null);
+    if (!alive()) return;
+    const st = stats?.stats || {};
+    statsBox.append(...[
+      ["Günstigstes", money(last?.min_unit)], ["Median", money(last?.median_unit)],
+      ["Marktwert (14 T.)", money(st.market_value)], ["Wert 60 Tage", money(st.historical_value)],
+      ["Trend", pct(st.trend_pct)], ["Verkäufe/Tag", st.sold_per_day != null ? nf1.format(st.sold_per_day) : "–"],
+      ["Angebote", last ? `${nf.format(last.quantity)} Stk. / ${nf.format(last.listings)}` : "–"],
+      ["Händler kauft", money(it.sell_price)],
+    ].map(([k, v]) => el("div", { class: "card" }, el("div", { class: "k", text: k }), el("div", { class: "v" }, v))));
+
+    const hs = await api(`/items/${id}/houses`, { region: S.region }).catch((e) => ({ err: e.message }));
+    if (!alive()) return;
+    if (hs.err) housesBox.replaceChildren(el("p", { class: "err", text: hs.err }));
+    else {
+      const list = hs.filter((x) => x.house.house_type !== "unified" && x.point).sort((a, b) => a.point.min_unit - b.point.min_unit);
+      housesBox.replaceChildren(el("div", { class: "tablewrap" }, el("table", null,
+        el("tr", null, el("th", null, "Haus"), el("th", { class: "num" }, "Günstigstes"), el("th", { class: "num" }, "Median"), el("th", { class: "num" }, "Menge")),
+        list.map((x) => el("tr", { style: x.house.house_key === S.house ? "background:#2a2312" : "" },
+          el("td", null, houseLabel(x.house)), el("td", { class: "num" }, money(x.point.min_unit)),
+          el("td", { class: "num" }, money(x.point.median_unit)), el("td", { class: "num", text: nf.format(x.point.quantity) }))))),
+        list.length ? null : el("p", { class: "hint", text: "In keinem Haus gelistet." }));
+    }
+
+    const auc = await api(`/houses/${S.house}/items/${id}/auctions`).catch((e) => ({ err: e.message }));
+    if (!alive()) return;
+    if (auc.err) aucBox.replaceChildren(el("p", { class: "err", text: auc.err }));
+    else {
+      const rows = (auc.rows || []).filter((a) => a.unit_buyout != null).sort((a, b) => a.unit_buyout - b.unit_buyout).slice(0, 20);
+      const unified = houseObj()?.house_type === "unified";
+      aucBox.replaceChildren(el("div", { class: "tablewrap" }, el("table", null,
+        el("tr", null, el("th", { class: "num" }, "Stückpreis"), el("th", { class: "num" }, "Menge"), el("th", { class: "num" }, "Gesamt"),
+          el("th", null, "Restzeit"), unified ? el("th", null, "Haus") : null),
+        rows.map((a) => el("tr", null, el("td", { class: "num" }, money(a.unit_buyout)),
+          el("td", { class: "num", text: a.count > 1 ? `${a.count} × ${a.quantity}` : a.quantity }),
+          el("td", { class: "num" }, money(a.buyout)), el("td", { class: "hint", text: TIME_LEFT[a.time_left] || a.time_left }),
+          unified ? el("td", { class: "hint", text: houseNameShort(a.house_name, a.house_id) }) : null)))),
+        el("p", { class: "hint", text: `${nf.format(auc.total_auctions || 0)} Auktionen, ${nf.format(auc.total_quantity || 0)} Stück insgesamt.` }));
+    }
+  } catch (e) {
+    if (alive()) box.append(el("p", { class: "err", text: "Fehler: " + e.message }));
+  }
+}
+function closeDetail() { const b = $("#detail"); b.classList.remove("open"); b.setAttribute("aria-hidden", "true"); openDetail.t = (openDetail.t || 0) + 1; }
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeDetail(); });
+
+function chart(pts, res) {
+  const W = 540, H = 200, L = 58, R = 8, T = 10, B = 22;
+  const NS = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(NS, "svg");
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`); svg.setAttribute("class", "chart");
+  const mk = (t, a) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); return e; };
+  const data = pts.filter((p) => p.min_unit != null);
+  if (data.length < 2) {
+    const wrap = el("p", { class: "hint", text: "Zu wenig Verlaufsdaten für ein Diagramm." }); return wrap;
+  }
+  const series = [["median_unit", "#f2c14e"], ["p10_unit", "#5fb8d1"], ["min_unit", "#7fd17a"]];
+  const vals = data.flatMap((p) => [p.min_unit, p.p10_unit, p.median_unit]).filter((v) => v != null).sort((a, b) => a - b);
+  // Ausreißer kappen (95. Perzentil), damit einzelne Mondpreise die Skala nicht zerstören
+  const hi = vals[Math.floor(vals.length * 0.95)] * 1.08 || 1, lo = Math.max(0, vals[0] * 0.92);
+  const t0 = +new Date(data[0].ts), t1 = +new Date(data[data.length - 1].ts);
+  const x = (t) => L + ((t - t0) / (t1 - t0 || 1)) * (W - L - R);
+  const y = (v) => T + (1 - (Math.min(v, hi) - lo) / (hi - lo || 1)) * (H - T - B);
+  for (let i = 0; i <= 4; i++) {
+    const v = lo + ((hi - lo) * i) / 4, yy = y(v);
+    svg.append(mk("line", { x1: L, x2: W - R, y1: yy, y2: yy, stroke: "#2a2216" }));
+    const t = mk("text", { x: L - 5, y: yy + 3, "text-anchor": "end" }); t.textContent = moneyText(v); svg.append(t);
+  }
+  const fmt = res === "hour" ? { day: "2-digit", month: "2-digit", hour: "2-digit" } : { day: "2-digit", month: "2-digit" };
+  for (let i = 0; i <= 4; i++) {
+    const tt = t0 + ((t1 - t0) * i) / 4;
+    const t = mk("text", { x: x(tt), y: H - 6, "text-anchor": i === 0 ? "start" : i === 4 ? "end" : "middle" });
+    t.textContent = new Date(tt).toLocaleString("de-DE", fmt); svg.append(t);
+  }
+  for (const [k, c] of series) {
+    if (!data.some((p) => p[k] != null)) continue;
+    const d = data.filter((p) => p[k] != null).map((p, i) => `${i ? "L" : "M"}${x(+new Date(p.ts)).toFixed(1)},${y(p[k]).toFixed(1)}`).join("");
+    svg.append(mk("path", { d, fill: "none", stroke: c, "stroke-width": k === "median_unit" ? 2 : 1.4, opacity: k === "min_unit" ? .8 : 1 }));
+  }
+  const cursor = mk("line", { y1: T, y2: H - B, stroke: "#8a7f6a", "stroke-dasharray": "3 3", visibility: "hidden" });
+  svg.append(cursor);
+  const tip = el("div", { class: "hint", style: "min-height:18px;margin-top:2px" });
+  svg.addEventListener("mousemove", (e) => {
+    const r = svg.getBoundingClientRect();
+    const t = t0 + (((e.clientX - r.left) / r.width) * W - L) / (W - L - R) * (t1 - t0);
+    let best = data[0]; for (const p of data) if (Math.abs(+new Date(p.ts) - t) < Math.abs(+new Date(best.ts) - t)) best = p;
+    const xx = x(+new Date(best.ts)); cursor.setAttribute("x1", xx); cursor.setAttribute("x2", xx); cursor.setAttribute("visibility", "visible");
+    tip.replaceChildren(new Date(best.ts).toLocaleString("de-DE", fmt), " · Günstigstes ", money(best.min_unit), " · 10 % ", money(best.p10_unit),
+      " · Median ", money(best.median_unit), ` · ${nf.format(best.quantity)} Stk.`);
+  });
+  svg.addEventListener("mouseleave", () => { cursor.setAttribute("visibility", "hidden"); tip.textContent = ""; });
+  return el("div", null, svg, el("div", { class: "legend" },
+    el("span", null, el("b", { style: "background:#f2c14e" }), "Median"),
+    data.some((p) => p.p10_unit != null) ? el("span", null, el("b", { style: "background:#5fb8d1" }), "10 %-Preis") : null,
+    el("span", null, el("b", { style: "background:#7fd17a" }), "Günstigstes")), tip);
+}
+
+/* ---------- Handwerk ---------- */
+const PAGE = 50;
+let professions = store.get("profs", null);
+async function renderCraft(view, alive, offset = 0) {
+  const c = S.craft;
+  const profSel = el("select", { onchange: (e) => { c.prof = e.target.value; save(); render(); } },
+    (professions || [{ id: 197, name: "Schneiderei" }]).map((p) => el("option", { value: p.id, selected: String(p.id) === String(c.prof) }, `${PROF_DE[p.id] || p.name}${p.recipes ? ` (${p.recipes})` : ""}`)));
+  const sortSel = el("select", { onchange: (e) => { c.sort = e.target.value; save(); render(); } },
+    [["daily", "Gewinn pro Tag"], ["profit", "Gewinn pro Stück"], ["sold", "Verkäufe pro Tag"]].map(([v, t]) => el("option", { value: v, selected: v === c.sort }, t)));
+  const soldIn = el("input", { type: "number", min: "0", step: "0.5", value: c.sold, style: "width:70px", onchange: (e) => { c.sold = e.target.value; save(); render(); } });
+  const compl = el("input", { type: "checkbox", checked: c.complete, onchange: (e) => { c.complete = e.target.checked; save(); render(); } });
+  let qTimer;
+  const qIn = el("input", { type: "text", placeholder: "Rezept filtern …", value: c.q, oninput: (e) => { clearTimeout(qTimer); qTimer = setTimeout(() => { c.q = e.target.value.trim(); save(); render(); }, 500); } });
+  const head = el("div", { class: "bar" },
+    el("div", { class: "ctrl" }, el("label", null, "Beruf"), profSel),
+    el("div", { class: "ctrl" }, el("label", null, "Sortierung"), sortSel),
+    el("div", { class: "ctrl" }, el("label", { title: "Mindestens so viele Verkäufe pro Tag" }, "min. Verk./Tag"), soldIn),
+    el("label", { class: "ctrl", title: "Nur Rezepte, deren Zutaten alle im AH (oder beim Händler) zu haben sind" }, compl, el("span", { class: "hint", text: "nur vollständig bepreist" })),
+    qIn);
+  if (offset === 0) view.replaceChildren(head, el("div", { class: "empty", text: "Berechne Rezepte …" }));
+  const data = await api(`/houses/${S.house}/crafting`, { profession: c.prof, q: c.q, min_sold: c.sold, complete: c.complete ? "true" : "", sort: c.sort, limit: PAGE, offset });
+  if (!alive()) return;
+  if (data.professions?.length) { professions = data.professions; store.set("profs", professions); }
+  updateSnap(data.as_of);
+  const open = new Set();
+  const tbody = el("tbody");
+  const table = el("div", { class: "tablewrap" }, el("table", null, el("thead", null, el("tr", null,
+    el("th", null, "Rezept"), el("th", { class: "num" }, "Zutaten"), el("th", { class: "num" }, "Verkaufswert"),
+    el("th", { class: "num" }, "Gewinn/Stk."), el("th", { class: "num hide-sm" }, "Verk./Tag"), el("th", { class: "num" }, "Gewinn/Tag"))), tbody));
+  function addRows(rows) {
+    for (const r of rows) {
+      const tr = el("tr", { class: "click" },
+        el("td", null, itemCell(r.item, (e) => { e.stopPropagation(); openDetail(r.item.item_id); }),
+          r.crafted_quantity > 1 ? el("span", { class: "hint", text: ` ×${nf1.format(r.crafted_quantity)}` }) : null,
+          r.complete ? null : el("span", { class: "hint", title: "Für mindestens eine Zutat gibt es keinen Preis", text: " ⚠" })),
+        el("td", { class: "num" }, money(r.cost)), el("td", { class: "num" }, money(r.unit_value * (r.crafted_quantity || 1))),
+        el("td", { class: "num" }, money(r.profit)), el("td", { class: "num hide-sm", text: nf1.format(r.sold_per_day || 0) }),
+        el("td", { class: "num" }, money(r.daily_profit)));
+      const det = el("tr", { hidden: true }, el("td", { colspan: 6, class: "reagents" },
+        el("table", null, (r.reagents || []).map((g) => el("tr", null,
+          el("td", null, itemCell(g)), el("td", { class: "num", text: `× ${g.quantity}` }),
+          el("td", { class: "num" }, money(g.unit_price)), el("td", { class: "num" }, money(g.unit_price != null ? g.unit_price * g.quantity : null)),
+          el("td", { class: "hint", text: g.source === "vendor" ? "Händler" : g.source === "ah" ? "AH" : (g.source || "kein Preis") })))),
+        el("div", { class: "bar", style: "margin:6px 0 0" },
+          el("span", { class: "hint", text: `${r.profession} · ${r.category || ""}` }),
+          el("button", { class: "btn small", onclick: () => { for (const g of r.reagents || []) if (g.source !== "vendor") addToShop(g, g.quantity, true); toast("Zutaten zur Einkaufsliste hinzugefügt"); } }, "Zutaten → Einkaufsliste"))));
+      tr.addEventListener("click", () => { det.hidden = !det.hidden; });
+      tbody.append(tr, det);
+    }
+  }
+  addRows(data.rows);
+  if (!data.rows.length) tbody.append(el("tr", null, el("td", { colspan: 6, class: "empty", text: "Keine passenden Rezepte. Senke ggf. die Mindestverkäufe." })));
+  let shown = data.rows.length;
+  const more = el("button", { class: "btn", hidden: shown >= data.total, onclick: async () => {
+    more.disabled = true;
+    const next = await api(`/houses/${S.house}/crafting`, { profession: c.prof, q: c.q, min_sold: c.sold, complete: c.complete ? "true" : "", sort: c.sort, limit: PAGE, offset: shown });
+    addRows(next.rows); shown += next.rows.length; more.disabled = false; more.hidden = shown >= data.total; info.textContent = infoText();
+  } }, "Mehr laden");
+  const infoText = () => `${shown} von ${nf.format(data.total)} Rezepten · Gewinn nach AH-Gebühr (Berechnung von Forever AH) · Klick auf Zeile zeigt Zutaten.`;
+  const info = el("span", { class: "hint", text: infoText() });
+  view.replaceChildren(head, table, el("div", { class: "bar", style: "margin-top:8px" }, more, info));
+}
+const PROF_DE = { 171: "Alchemie", 164: "Schmiedekunst", 185: "Kochkunst", 333: "Verzauberkunst", 202: "Ingenieurskunst", 129: "Erste Hilfe",
+  356: "Angeln", 182: "Kräuterkunde", 165: "Lederverarbeitung", 186: "Bergbau", 393: "Kürschnerei", 197: "Schneiderei" };
+
+/* ---------- Schnäppchen ---------- */
+async function renderDeals(view, alive) {
+  const d = S.deals;
+  const head = el("div", { class: "bar" },
+    el("div", { class: "seg" }, [["market", "Unter Marktwert"], ["vendor", "Unter Händlerpreis"]].map(([v, t]) =>
+      el("button", { class: v === d.mode ? "on" : "", onclick: () => { d.mode = v; save(); render(); } }, t))),
+    el("div", { class: "ctrl" }, el("label", null, "min. Gewinn (g)"),
+      el("input", { type: "number", min: "0", step: "0.5", value: d.minProfit, style: "width:80px", onchange: (e) => { d.minProfit = parseFloat(e.target.value) || 0; save(); render(); } })),
+    el("label", { class: "ctrl" }, el("input", { type: "checkbox", checked: d.hideJunk, onchange: (e) => { d.hideJunk = e.target.checked; save(); render(); } }), el("span", { class: "hint", text: "Graue Items ausblenden" })));
+  view.replaceChildren(head, el("div", { class: "empty", text: "Suche Schnäppchen …" }));
+  const data = await api(`/houses/${S.house}/deals`, { mode: d.mode, min_profit: Math.round(d.minProfit * 10000), limit: 100 });
+  if (!alive()) return;
+  updateSnap(data.as_of);
+  const rows = data.rows.filter((r) => !(d.hideJunk && r.item.quality === "POOR"));
+  const unified = houseObj()?.house_type === "unified";
+  const vendor = d.mode === "vendor";
+  const cols = [
+    { key: "name", label: "Item", val: (r) => r.item.name || "", cell: (r) => itemCell(r.item) },
+    { key: "price", label: "Stückpreis", num: true, val: (r) => r.unit_buyout, cell: (r) => money(r.unit_buyout) },
+    { key: "ref", label: vendor ? "Händler zahlt" : "Marktwert", num: true, val: (r) => vendor ? r.sell_price : r.market_value, cell: (r) => money(vendor ? r.sell_price : r.market_value) },
+    { key: "disc", label: "Rabatt", num: true, val: (r) => r.discount_pct, cell: (r) => el("span", { class: "up", text: `−${nf1.format(r.discount_pct)} %` }) },
+    { key: "qty", label: "Menge", num: true, sm: true, val: (r) => r.quantity * (r.count || 1), cell: (r) => (r.count > 1 ? `${r.count} × ` : "") + r.quantity },
+    { key: "profit", label: vendor ? "Gewinn (Händler)" : "Gewinn (realistisch)", num: true, title: "Bei Marktwert: Gewinn, der sich bei der geschätzten Nachfrage verkaufen lässt",
+      val: (r) => vendor ? r.profit : (r.sellable_profit ?? r.profit), cell: (r) => money(vendor ? r.profit : (r.sellable_profit ?? r.profit)) },
+    vendor ? null : { key: "days", label: "Tage bis Verkauf", num: true, sm: true, val: (r) => r.days_to_sell, cell: (r) => r.days_to_sell != null ? nf1.format(r.days_to_sell) : "–" },
+    unified ? { key: "house", label: "Haus", val: (r) => r.house_id, cell: (r) => el("span", { class: "hint", text: houseNameShort(r.house_name, r.house_id) }) } : null,
+  ].filter(Boolean);
+  view.replaceChildren(head, sortableTable(cols, rows, dealSort, (r) => openDetail(r.item.item_id)),
+    el("p", { class: "hint", text: `${nf.format(data.total)} Treffer, die besten 100 angezeigt. Marktwerte sind Schätzungen – Preise vor dem Kauf im Spiel prüfen.` +
+      (unified ? " Achtung: „Alle Häuser“ mischt alle Auktionshäuser – wähle oben dein eigenes Haus, um nur kaufbare Angebote zu sehen." : "") }));
+}
+const dealSort = { key: "profit", dir: -1 };
+
+/* ---------- Preisbewegungen ---------- */
+async function renderMovers(view, alive) {
+  const m = S.movers;
+  const head = el("div", { class: "bar" },
+    el("div", { class: "seg" }, [["6", "6 Std."], ["24", "24 Std."], ["72", "3 Tage"], ["168", "7 Tage"]].map(([v, t]) =>
+      el("button", { class: v === m.window ? "on" : "", onclick: () => { m.window = v; save(); render(); } }, t))),
+    el("div", { class: "ctrl" }, el("label", null, "min. Menge"),
+      el("input", { type: "number", min: "0", value: m.minQty, style: "width:70px", onchange: (e) => { m.minQty = parseInt(e.target.value) || 0; save(); render(); } })),
+    el("label", { class: "ctrl" }, el("input", { type: "checkbox", checked: m.hideJunk, onchange: (e) => { m.hideJunk = e.target.checked; save(); render(); } }), el("span", { class: "hint", text: "Graue Items ausblenden" })));
+  view.replaceChildren(head, el("div", { class: "empty", text: "Lade Bewegungen …" }));
+  const data = await api(`/houses/${S.house}/movers`, { window: m.window, limit: 50 });
+  if (!alive()) return;
+  updateSnap(data.as_of);
+  const f = (rows) => (rows || []).filter((r) => !(m.hideJunk && r.item.quality === "POOR") && (r.current?.quantity ?? 0) >= m.minQty);
+  const cols = (label) => [
+    { key: "name", label, cell: (r) => itemCell(r.item) },
+    { key: "prev", label: "vorher", num: true, sm: true, cell: (r) => money(r.prev_median_unit) },
+    { key: "now", label: "Median jetzt", num: true, cell: (r) => money(r.current?.median_unit) },
+    { key: "chg", label: "Änderung", num: true, cell: (r) => pct(r.median_change_pct) },
+    { key: "qty", label: "Menge", num: true, sm: true, cell: (r) => nf.format(r.current?.quantity ?? 0) },
+  ];
+  const block = (title, rows, label) => [el("h3", { style: "color:var(--accent2);font-size:14px;margin:16px 0 6px", text: title }),
+    sortableTable(cols(label), f(rows), { key: null, dir: 1 }, (r) => openDetail(r.item.item_id))];
+  view.replaceChildren(head,
+    ...block("📈 Größte Anstiege", data.risers, "Item"),
+    ...block("📉 Größte Rückgänge", data.fallers, "Item"),
+    ...(data.most_listed ? block("📦 Am meisten gelistet", data.most_listed, "Item") : []),
+    el("p", { class: "hint", text: "Median-Sprünge bei wenigen Angeboten sind oft nur einzelne überteuerte Auktionen. Der Mengenfilter hilft dagegen." }));
+}
+
+/* ---------- Einkaufsliste ---------- */
+function addToShop(it, qty, silent) {
+  const id = it.item_id ?? it.id;
+  const ex = S.shop.find((s) => s.id === id);
+  if (ex) ex.qty += qty; else S.shop.push({ id, name: it.name, quality: it.quality, qty });
+  save();
+  if (!silent) toast(`${it.name || "Item"} zur Einkaufsliste hinzugefügt`);
+  if (S.tab === "shop") render();
+}
+async function renderShop(view, alive) {
+  const head = el("div", { class: "bar" },
+    searchBox("Item zur Einkaufsliste hinzufügen …", (it) => addToShop(it, 1)),
+    S.shop.length ? el("button", { class: "btn", onclick: () => { if (confirm("Einkaufsliste leeren?")) { S.shop = []; save(); render(); } } }, "Liste leeren") : null);
+  if (!S.shop.length) {
+    view.replaceChildren(head, el("div", { class: "empty" }, "Die Einkaufsliste ist leer. Füge Items über die Suche hinzu – oder im Tab „Handwerk“ per „Zutaten → Einkaufsliste“."));
+    return;
+  }
+  view.replaceChildren(head, el("div", { class: "empty", text: "Berechne Kosten …" }));
+  const data = await api(`/houses/${S.house}/shopping`, { items: S.shop.map((s) => `${s.id}:${s.qty}`).join(",") }, 60 * 1000);
+  if (!alive()) return;
+  updateSnap(data.as_of);
+  const byId = new Map(data.lines.map((l) => [l.item.item_id, l]));
+  const unified = houseObj()?.house_type === "unified";
+  const tbody = el("tbody");
+  for (const s of S.shop) {
+    const l = byId.get(s.id), b = l?.best;
+    tbody.append(el("tr", null,
+      el("td", null, itemCell(l?.item || { item_id: s.id, name: s.name, quality: s.quality }, () => openDetail(s.id))),
+      el("td", { class: "num" }, el("input", { type: "number", min: "1", value: s.qty, style: "width:70px",
+        onchange: (e) => { s.qty = Math.max(1, parseInt(e.target.value) || 1); save(); render(); } })),
+      el("td", { class: "num" }, b && b.units ? money(b.cost / b.units) : "–"),
+      el("td", { class: "num" }, b ? money(b.max_unit) : "–"),
+      el("td", { class: "num" }, b ? money(b.cost) : el("span", { class: "err", text: "nicht verfügbar" })),
+      el("td", null, b && !b.complete ? el("span", { class: "hint", title: "Nicht genug Angebote für die ganze Menge", text: `nur ${b.units}` })
+        : b && b.units > s.qty ? el("span", { class: "hint", title: "Auktionen sind nur als ganzer Stapel kaufbar", text: `${b.units} Stk. (Stapel)` }) : ""),
+      unified ? el("td", { class: "hint", text: b ? houseNameShort(b.house_name, b.house_id) : "" }) : null,
+      el("td", null, el("button", { class: "btn small", onclick: () => { S.shop = S.shop.filter((x) => x !== s); save(); render(); } }, "✕"))));
+  }
+  const table = el("div", { class: "tablewrap" }, el("table", null, el("thead", null, el("tr", null,
+    el("th", null, "Item"), el("th", { class: "num" }, "Anzahl"), el("th", { class: "num" }, "Ø Stückpreis"), el("th", { class: "num" }, "teuerstes Stück"),
+    el("th", { class: "num" }, "Kosten"), el("th", null, ""), unified ? el("th", null, "Haus") : null, el("th", null, ""))), tbody));
+  const best1 = Array.isArray(data.one_house) ? data.one_house.find((h) => h.complete) : null;
+  view.replaceChildren(head, table,
+    el("div", { class: "cards", style: "max-width:640px" },
+      el("div", { class: "card" }, el("div", { class: "k", text: "Gesamtkosten" + (unified ? " (günstigste Häuser gemischt)" : "") }), el("div", { class: "v" }, money(data.total))),
+      el("div", { class: "card" }, el("div", { class: "k", text: "Vollständig kaufbar" }), el("div", { class: "v", text: data.complete ? "ja" : "nein" })),
+      unified && best1 ? el("div", { class: "card" }, el("div", { class: "k", text: "Alles in einem Haus" }), el("div", { class: "v" }, money(best1.cost)),
+        el("div", { class: "hint", text: houseNameShort(best1.house_name, best1.house_id) })) : null),
+    el("p", { class: "hint", text: "Kosten = günstigste aktuelle Auktionen, bis die Menge erreicht ist. Stapel lassen sich nur ganz kaufen, deshalb kann die Stückzahl höher ausfallen." }));
+}
+
+/* ---------- Connector-Varianten der Tabs (weniger Daten als die direkte API) ---------- */
+const PROF_EN = { 171: "Alchemy", 164: "Blacksmithing", 185: "Cooking", 333: "Enchanting", 202: "Engineering", 129: "First Aid",
+  165: "Leatherworking", 186: "Mining", 197: "Tailoring" };
+const plainItem = (id, name, quality) => ({ item_id: id, name, quality: quality || "COMMON", has_icon: false });
+const hLabel = (key) => { const h = houseByKey(key); return h ? houseLabel(h) : key; };
+const mcpNote = (t) => el("p", { class: "hint", text: t + " (Connector-Version; die PC-Version zeigt mehr.)" });
+
+async function renderCraftMcp(view, alive) {
+  const c = S.craft;
+  if (!PROF_EN[c.prof]) c.prof = "197";
+  const head = el("div", { class: "bar" },
+    el("div", { class: "ctrl" }, el("label", null, "Beruf"),
+      el("select", { onchange: (e) => { c.prof = e.target.value; save(); render(); } },
+        Object.keys(PROF_EN).sort((a, b) => PROF_DE[a].localeCompare(PROF_DE[b], "de")).map((id) => el("option", { value: id, selected: String(id) === String(c.prof) }, PROF_DE[id])))));
+  view.replaceChildren(head, el("div", { class: "empty", text: "Berechne Rezepte …" }));
+  const data = await mcpCall("crafting_profit", { house: S.house, profession: PROF_EN[c.prof], limit: 25 });
+  if (!alive()) return;
+  updateSnap();
+  const tbody = el("tbody");
+  for (const r of data.recipes || []) {
+    const tr = el("tr", { class: "click" },
+      el("td", null, itemCell(plainItem(r.item_id, r.makes || r.recipe), (e) => { e.stopPropagation(); openDetail(r.item_id); }),
+        r.units_made > 1 ? el("span", { class: "hint", text: ` ×${nf1.format(r.units_made)}` }) : null),
+      el("td", { class: "num money hide-sm", text: r.cost_text || "–" }), el("td", { class: "num money hide-sm", text: r.product_value_text || "–" }),
+      el("td", { class: "num" }, money(r.profit)), el("td", { class: "num hide-sm", text: nf1.format(r.sold_per_day_estimate || 0) }),
+      el("td", { class: "num" }, money(r.profit_per_day_estimate)));
+    const det = el("tr", { hidden: true }, el("td", { colspan: 6, class: "reagents" },
+      el("table", null, (r.reagents || []).map((g) => el("tr", null,
+        el("td", { text: g.name }), el("td", { class: "num", text: `× ${g.quantity}` }), el("td", { class: "num money", text: g.each || "–" }),
+        el("td", { class: "hint", text: g.source === "vendor" ? "Händler" : g.source === "ah" ? "AH" : (g.source || "kein Preis") }))))));
+    tr.addEventListener("click", () => { det.hidden = !det.hidden; });
+    tbody.append(tr, det);
+  }
+  if (!tbody.children.length) tbody.append(el("tr", null, el("td", { colspan: 6, class: "empty", text: "Keine Rezepte gefunden." })));
+  view.replaceChildren(head, el("div", { class: "tablewrap" }, el("table", null, el("thead", null, el("tr", null,
+    el("th", null, "Rezept"), el("th", { class: "num hide-sm" }, "Zutaten"), el("th", { class: "num hide-sm" }, "Verkaufswert"),
+    el("th", { class: "num" }, "Gewinn/Stk."), el("th", { class: "num hide-sm" }, "Verk./Tag"), el("th", { class: "num" }, "Gewinn/Tag"))), tbody)),
+    mcpNote(`Top 25 von ${nf.format(data.total || 0)} Rezepten nach Gewinn · Tippe auf eine Zeile für die Zutaten`));
+}
+
+async function renderDealsMcp(view, alive) {
+  const d = S.deals;
+  d.minDiscount ??= 30;
+  const head = el("div", { class: "bar" },
+    el("div", { class: "seg" }, [["market", "Unter Marktwert"], ["vendor", "Unter Händlerpreis"]].map(([v, t]) =>
+      el("button", { class: v === d.mode ? "on" : "", onclick: () => { d.mode = v; save(); render(); } }, t))),
+    d.mode === "market" ? el("div", { class: "ctrl" }, el("label", null, "min. Rabatt %"),
+      el("input", { type: "number", min: "0", max: "95", value: d.minDiscount, style: "width:70px", onchange: (e) => { d.minDiscount = parseFloat(e.target.value) || 0; save(); render(); } })) : null);
+  view.replaceChildren(head, el("div", { class: "empty", text: "Suche Schnäppchen …" }));
+  const input = { house: S.house, mode: d.mode, limit: 25 };
+  if (d.mode === "market") input.min_discount_pct = d.minDiscount;
+  const data = await mcpCall("find_deals", input);
+  if (!alive()) return;
+  updateSnap();
+  const unified = houseObj()?.house_type === "unified";
+  const vendor = d.mode === "vendor";
+  const cols = [
+    { key: "name", label: "Item", val: (r) => r.name || "", cell: (r) => itemCell(plainItem(r.item_id, r.name)) },
+    { key: "price", label: "Stückpreis", num: true, val: (r) => r.buyout_each, cell: (r) => money(r.buyout_each) },
+    { key: "ref", label: vendor ? "Händler zahlt" : "Marktwert", num: true, sm: true, val: (r) => r.reference_each, cell: (r) => money(r.reference_each) },
+    { key: "disc", label: "Rabatt", num: true, val: (r) => r.discount_pct, cell: (r) => el("span", { class: "up", text: `−${nf1.format(r.discount_pct)} %` }) },
+    { key: "qty", label: "Menge", num: true, sm: true, val: (r) => r.stack * (r.auctions || 1), cell: (r) => (r.auctions > 1 ? `${r.auctions} × ` : "") + r.stack },
+    { key: "profit", label: vendor ? "Gewinn" : "Gewinn (3 Tage)", num: true, title: "Gewinn, der sich in etwa 3 Tagen verkaufen lässt (nach 5 % AH-Gebühr)",
+      val: (r) => vendor ? r.profit_per_stack : r.profit_sellable_in_3_days, cell: (r) => money(vendor ? r.profit_per_stack : r.profit_sellable_in_3_days) },
+    vendor ? null : { key: "days", label: "Tage bis Verkauf", num: true, sm: true, val: (r) => r.days_to_sell_estimate, cell: (r) => r.days_to_sell_estimate != null ? nf1.format(r.days_to_sell_estimate) : "–" },
+    unified ? { key: "house", label: "Haus", val: (r) => r.house, cell: (r) => el("span", { class: "hint", text: hLabel(r.house) }) } : null,
+  ].filter(Boolean);
+  view.replaceChildren(head, sortableTable(cols, data.deals || [], dealSort, (r) => openDetail(r.item_id)),
+    mcpNote(`Die besten 25 von ${nf.format(data.total || 0)} Treffern. Preise vor dem Kauf im Spiel prüfen.` +
+      (unified ? " „Alle Häuser“ mischt alle Auktionshäuser – wähle oben dein eigenes Haus." : "")));
+}
+
+async function renderMoversMcp(view, alive) {
+  const m = S.movers;
+  if (m.window !== "24" && m.window !== "168") m.window = "24";
+  const head = el("div", { class: "bar" },
+    el("div", { class: "seg" }, [["24", "24 Std."], ["168", "7 Tage"]].map(([v, t]) =>
+      el("button", { class: v === m.window ? "on" : "", onclick: () => { m.window = v; save(); render(); } }, t))));
+  view.replaceChildren(head, el("div", { class: "empty", text: "Lade Bewegungen …" }));
+  const data = await mcpCall("market_movers", { house: S.house, window_hours: Number(m.window), limit: 25 });
+  if (!alive()) return;
+  updateSnap();
+  const cols = [
+    { key: "name", label: "Item", cell: (r) => itemCell(plainItem(r.item_id, r.name)) },
+    { key: "prev", label: "vorher", num: true, sm: true, cell: (r) => el("span", { class: "money", text: r.median_before || "–" }) },
+    { key: "now", label: "Median jetzt", num: true, cell: (r) => el("span", { class: "money", text: r.median_now || "–" }) },
+    { key: "chg", label: "Änderung", num: true, cell: (r) => pct(r.change_pct) },
+  ];
+  const block = (title, rows) => [el("h3", { style: "color:var(--accent2);font-size:14px;margin:16px 0 6px", text: title }),
+    sortableTable(cols, rows || [], { key: null, dir: 1 }, (r) => openDetail(r.item_id))];
+  view.replaceChildren(head, ...block("📈 Größte Anstiege", data.rising), ...block("📉 Größte Rückgänge", data.falling),
+    mcpNote("Median-Sprünge bei wenigen Angeboten sind oft nur einzelne überteuerte Auktionen"));
+}
+
+async function renderShopMcp(view, alive) {
+  const head = el("div", { class: "bar" },
+    searchBox("Item zur Einkaufsliste hinzufügen …", (it) => addToShop(it, 1)),
+    S.shop.length ? el("button", { class: "btn", onclick: () => { if (confirm("Einkaufsliste leeren?")) { S.shop = []; save(); render(); } } }, "Liste leeren") : null);
+  if (!S.shop.length) {
+    view.replaceChildren(head, el("div", { class: "empty" }, "Die Einkaufsliste ist leer. Füge Items über die Suche oder die Detailansicht hinzu."));
+    return;
+  }
+  view.replaceChildren(head, el("div", { class: "empty", text: "Berechne Kosten …" }));
+  const data = await mcpCall("price_shopping_list", { house: S.house, items: S.shop.slice(0, 50).map((s) => ({ item_id: s.id, quantity: s.qty })) });
+  if (!alive()) return;
+  updateSnap();
+  const byId = new Map((data.lines || []).map((l) => [l.item_id, l]));
+  const unified = houseObj()?.house_type === "unified";
+  const tbody = el("tbody");
+  for (const s of S.shop) {
+    const l = byId.get(s.id);
+    tbody.append(el("tr", null,
+      el("td", null, itemCell(plainItem(s.id, l?.name || s.name, s.quality), () => openDetail(s.id))),
+      el("td", { class: "num" }, el("input", { type: "number", min: "1", value: s.qty, style: "width:64px",
+        onchange: (e) => { s.qty = Math.max(1, parseInt(e.target.value) || 1); save(); render(); } })),
+      el("td", { class: "num" }, l?.cost != null ? money(l.cost) : el("span", { class: "err", text: "nicht verfügbar" })),
+      el("td", { class: "hint" }, l && !l.enough_listed ? "nicht genug im AH" : l?.units_bought > s.qty ? `${l.units_bought} Stk. (Stapel)` : ""),
+      unified ? el("td", { class: "hint", text: l?.best_house ? hLabel(l.best_house) : "" }) : null,
+      el("td", null, el("button", { class: "btn small", onclick: () => { S.shop = S.shop.filter((x) => x !== s); save(); render(); } }, "✕"))));
+  }
+  const one = data.cheapest_single_house;
+  view.replaceChildren(head,
+    el("div", { class: "tablewrap" }, el("table", null, el("thead", null, el("tr", null,
+      el("th", null, "Item"), el("th", { class: "num" }, "Anzahl"), el("th", { class: "num" }, "Kosten"), el("th", null, ""),
+      unified ? el("th", null, "Haus") : null, el("th", null, ""))), tbody)),
+    el("div", { class: "cards", style: "max-width:640px" },
+      el("div", { class: "card" }, el("div", { class: "k", text: "Gesamtkosten" }), el("div", { class: "v" }, money(data.total))),
+      el("div", { class: "card" }, el("div", { class: "k", text: "Vollständig kaufbar" }), el("div", { class: "v", text: data.complete ? "ja" : "nein" })),
+      one && typeof one === "object" && (one.cost ?? one.total) != null ? el("div", { class: "card" }, el("div", { class: "k", text: "Alles in einem Haus" }),
+        el("div", { class: "v" }, money(one.cost ?? one.total)), el("div", { class: "hint", text: hLabel(one.house) })) : null),
+    el("p", { class: "hint", text: "Kosten = günstigste aktuelle Auktionen. Stapel lassen sich nur ganz kaufen, deshalb kann die Stückzahl höher ausfallen." }));
+}
+
+/* ---------- Kleinkram ---------- */
+function toast(text) {
+  const t = el("div", { style: "position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#3b2d12;border:1px solid var(--accent2);color:var(--accent);padding:7px 14px;border-radius:6px;z-index:50", text });
+  document.body.append(t); setTimeout(() => t.remove(), 1800);
+}
+function fixNavOffset() { document.documentElement.style.setProperty("--hdr", $("#hdr").offsetHeight + "px"); }
+window.addEventListener("resize", fixNavOffset);
+
+function fillHouseSelects() {
+  const regions = [...new Set(S.houses.map((h) => h.region))];
+  const REG = { eu: "Europa", us: "Amerika", kr: "Korea", tw: "Taiwan" };
+  $("#region").replaceChildren(...regions.map((r) => el("option", { value: r, selected: r === S.region }, REG[r] || r.toUpperCase())));
+  const hs = S.houses.filter((h) => h.region === S.region)
+    .sort((a, b) => (a.house_type === "unified" ? -1 : b.house_type === "unified" ? 1 : a.house_id - b.house_id));
+  if (!hs.some((h) => String(h.house_key) === String(S.house))) S.house = hs[0]?.house_key ?? null;
+  $("#house").replaceChildren(...hs.map((h) => el("option", { value: h.house_key, selected: String(h.house_key) === String(S.house) }, houseLabel(h))));
+}
+
+// Auf claude.ai läuft die Seite in einer Umgebung ohne freien Netzzugriff → Connector nutzen.
+async function detectMode() {
+  if (MCP) return;
+  if (window.claude && typeof window.claude.use === "function") {
+    $("#view").replaceChildren(el("div", { class: "empty", text: "Verbinde mit dem Connector …" }));
+    try { MCP = await window.claude.use("mcp"); } catch { MCP = null; }
+    if (MCP) { MODE = "mcp"; return; }
+  }
+  MODE = "rest";
+}
+async function start() {
+  try {
+    await detectMode();
+    if (S.house == null) S.house = store.get("house." + MODE, null);
+    await loadHouses();
+  } catch (e) {
+    $("#view").replaceChildren(e.code ? errorBox(e) : el("div", { class: "empty err", text: "Konnte die Auktionshäuser nicht laden: " + e.message }));
+    return;
+  }
+  fixNavOffset();
+  render();
+}
+function init() {
+  $("#refresh").value = String(S.refresh);
+  $("#refresh").addEventListener("change", (e) => { S.refresh = Number(e.target.value); save(); });
+  $("#reload").addEventListener("click", async () => {
+    cache.clear();
+    if (isMcp()) await MCP.invalidate(SERVER).catch(() => {});
+    loadHouses(true).then(render, (e) => $("#view").replaceChildren(errorBox(e)));
+  });
+  $("#region").addEventListener("change", (e) => { S.region = e.target.value; fillHouseSelects(); save(); closeDetail(); render(); });
+  $("#house").addEventListener("change", (e) => { S.house = isMcp() ? e.target.value : Number(e.target.value); save(); closeDetail(); render(); });
+  fixNavOffset(); drawTabs();
+  start();
+  // Automatische Aktualisierung (nur wenn das Fenster sichtbar ist oder Zielpreise beobachtet werden)
+  setInterval(async () => {
+    if (!S.houses.length) return;
+    updateSnap();
+    if (!S.refresh || Date.now() - S.lastLoad < S.refresh * 60000) return;
+    if (document.hidden && !(S.tab === "watch" && S.watch.some((w) => w.target != null))) return;
+    if (isMcp()) await MCP.invalidate(SERVER).catch(() => {});
+    await loadHouses(true).catch(() => {});
+    render();
+  }, 30000);
+}
+async function loadHouses(force) {
+  S.houses = isMcp() ? ((await mcpCall("list_houses", {})).houses || []).map(slugHouse)
+                     : await api("/houses", null, force ? 0 : TTL);
+  fillHouseSelects(); save(); updateSnap();
+}
+init();
+</script>
+</body>
+</html>
